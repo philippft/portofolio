@@ -59,27 +59,27 @@ const marqueeItems = [
 
 export function ExhibitionSlider() {
   return (
-    <section className="w-full relative" id="leadership-section">
+    <section className="w-full relative overflow-hidden" id="leadership-section">
       <div className="flex flex-col">
         {/* Header with Exhibition Metadata */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="space-y-3 max-w-xl">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6">
+          <div className="space-y-2.5 sm:space-y-3 max-w-xl">
             <div className="inline-flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-signal-orange" />
-              <span className="font-mono text-[11px] uppercase tracking-widest text-primary dark:text-stone-300 font-semibold">
+              <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-primary dark:text-stone-300 font-semibold">
                 • EXHIBITION GALLERY // IMPACT
               </span>
             </div>
-            <h2 className="font-serif text-[36px] md:text-[46px] text-primary dark:text-stone-100 tracking-tight font-medium leading-tight">
+            <h2 className="font-serif text-[28px] xs:text-[32px] sm:text-[38px] md:text-[46px] text-primary dark:text-stone-100 tracking-tight font-medium leading-tight">
               Leadership &amp; Institutional Impact
             </h2>
-            <p className="font-sans text-[16px] text-on-surface-variant dark:text-stone-400 font-[450] leading-relaxed">
+            <p className="font-sans text-[14px] sm:text-[16px] text-on-surface-variant dark:text-stone-400 font-[450] leading-relaxed">
               Fostering technological competence across student cohorts and earning top national research accolades.
             </p>
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
-            <div className="inline-flex items-center gap-2 font-mono text-[12px] text-on-surface-variant dark:text-stone-400 bg-surface dark:bg-stone-900/80 px-4 py-2 rounded-full border border-outline-variant/60 dark:border-stone-800 shadow-sm">
+            <div className="inline-flex items-center gap-2 font-mono text-[11px] sm:text-[12px] text-on-surface-variant dark:text-stone-400 bg-surface dark:bg-stone-900/80 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-outline-variant/60 dark:border-stone-800 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-signal-orange animate-ping" />
               <span>Continuous Exhibition Flow</span>
             </div>
@@ -87,16 +87,16 @@ export function ExhibitionSlider() {
         </div>
 
         {/* Seamless Continuous Marquee Track */}
-        <div className="relative w-full overflow-hidden mt-12 sm:mt-16 py-4 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-          <div className="animate-marquee flex gap-8 sm:gap-10">
+        <div className="relative w-full overflow-hidden mt-8 sm:mt-12 md:mt-16 py-4 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+          <div className="animate-marquee flex gap-5 sm:gap-8 md:gap-10">
             {marqueeItems.map((item, index) => (
               <article
                 key={`${item.id}-${index}`}
-                className="shrink-0 w-[340px] sm:w-[460px] md:w-[480px] bg-surface/90 dark:bg-stone-900/60 rounded-container border border-outline-variant/60 dark:border-stone-800/90 p-7 sm:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between kinetic-card select-none backdrop-blur-sm transition-all"
+                className="shrink-0 w-[290px] xs:w-[330px] sm:w-[400px] md:w-[450px] bg-surface/90 dark:bg-stone-900/60 rounded-container border border-outline-variant/60 dark:border-stone-800/90 p-5 sm:p-7 md:p-8 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between kinetic-card select-none backdrop-blur-sm transition-all"
               >
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   {/* Visual Preview Frame */}
-                  <div className="w-full aspect-[16/10] rounded-[24px] bg-[#141211] relative overflow-hidden flex items-end p-6 group border border-outline-variant/30 dark:border-stone-800">
+                  <div className="w-full aspect-[16/10] rounded-[20px] sm:rounded-[24px] bg-[#141211] relative overflow-hidden flex items-end p-4 sm:p-6 group border border-outline-variant/30 dark:border-stone-800">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10" />
 
                     {item.statusType === "award" ? (

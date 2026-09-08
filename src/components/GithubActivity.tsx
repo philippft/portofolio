@@ -47,35 +47,35 @@ export function GithubActivity({ initialData }: GithubActivityProps) {
 
   return (
     <section className="w-full reveal-element is-visible" id="activity-section">
-      <div className="bg-surface/70 dark:bg-stone-900/60 rounded-container p-6 sm:p-10 border border-outline-variant/60 dark:border-stone-800/90 shadow-[0px_24px_54px_rgba(0,0,0,0.06)] dark:shadow-[0px_24px_54px_rgba(0,0,0,0.35)] relative overflow-hidden backdrop-blur-sm transition-all">
+      <div className="bg-surface/70 dark:bg-stone-900/60 rounded-container p-5 sm:p-8 md:p-10 border border-outline-variant/60 dark:border-stone-800/90 shadow-[0px_24px_54px_rgba(0,0,0,0.06)] dark:shadow-[0px_24px_54px_rgba(0,0,0,0.35)] relative overflow-hidden backdrop-blur-sm transition-all">
         {/* Background subtle glow */}
         <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-signal-orange/[0.04] blur-3xl pointer-events-none" />
 
-        <div className="space-y-8 relative z-10">
+        <div className="space-y-6 sm:space-y-8 relative z-10">
           {/* Header & Meta Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="space-y-2 max-w-2xl">
               <div className="inline-flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-signal-orange animate-pulse" />
-                <span className="font-mono text-[11px] uppercase tracking-widest text-primary dark:text-stone-300 font-semibold">
+                <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-primary dark:text-stone-300 font-semibold">
                   • ENGINEERING ACTIVITY // PROOF OF WORK
                 </span>
               </div>
-              <h2 className="font-serif text-[32px] sm:text-[40px] text-primary dark:text-stone-100 tracking-tight font-medium leading-tight">
+              <h2 className="font-serif text-[26px] xs:text-[30px] sm:text-[36px] md:text-[40px] text-primary dark:text-stone-100 tracking-tight font-medium leading-tight">
                 Consistently building, one commit at a time.
               </h2>
-              <p className="font-sans text-[15px] text-on-surface-variant dark:text-stone-400 font-[450] leading-relaxed">
+              <p className="font-sans text-[14px] sm:text-[15px] text-on-surface-variant dark:text-stone-400 font-[450] leading-relaxed">
                 Live git telemetry reflecting continuous development across research repositories, distributed backends, and open-source models.
               </p>
             </div>
 
             {/* Action Pill */}
-            <div className="shrink-0">
+            <div className="shrink-0 w-full sm:w-auto">
               <a
                 href="https://github.com/philippft"
                 target="_blank"
                 rel="noreferrer"
-                className="magnetic-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-container dark:bg-stone-800/90 hover:bg-primary hover:text-canvas text-primary dark:text-stone-200 border border-outline-variant/60 dark:border-stone-700/60 font-mono text-[12px] uppercase tracking-wider transition-all duration-300 shadow-sm"
+                className="magnetic-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4.5 py-2.5 rounded-full bg-surface-container dark:bg-stone-800/90 hover:bg-primary hover:text-canvas text-primary dark:text-stone-200 border border-outline-variant/60 dark:border-stone-700/60 font-mono text-[11px] sm:text-[12px] uppercase tracking-wider transition-all duration-300 shadow-sm"
               >
                 <Terminal className="w-4 h-4 text-signal-orange" />
                 <span>View GitHub Profile</span>
@@ -85,9 +85,9 @@ export function GithubActivity({ initialData }: GithubActivityProps) {
           </div>
 
           {/* Heatmap Visual Container */}
-          <div className="bg-canvas/90 dark:bg-stone-950/80 rounded-3xl p-5 sm:p-6 border border-outline-variant/60 dark:border-stone-800/80 space-y-4">
+          <div className="bg-canvas/90 dark:bg-stone-950/80 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-outline-variant/60 dark:border-stone-800/80 space-y-3 sm:space-y-4">
             {/* Month Legends */}
-            <div className="flex items-center justify-between text-on-surface-variant dark:text-stone-400 font-mono text-[11px] px-1 overflow-hidden select-none">
+            <div className="flex items-center justify-between text-on-surface-variant dark:text-stone-400 font-mono text-[10px] sm:text-[11px] px-1 overflow-hidden select-none">
               <span>Jan</span>
               <span>Feb</span>
               <span>Mar</span>

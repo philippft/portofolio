@@ -87,27 +87,27 @@ const marqueeSkills = [
 
 export function SkillCarousel() {
   return (
-    <section className="w-full relative" id="toolkit-section">
+    <section className="w-full relative overflow-hidden" id="toolkit-section">
       <div className="flex flex-col">
         {/* Header with Navigation Controls */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="space-y-3 max-w-xl">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6">
+          <div className="space-y-2.5 sm:space-y-3 max-w-xl">
             <div className="inline-flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-signal-orange" />
-              <span className="font-mono text-[11px] uppercase tracking-widest text-primary dark:text-stone-300 font-semibold">
+              <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-primary dark:text-stone-300 font-semibold">
                 • ENGINEERING DISCIPLINE // TOOLKIT
               </span>
             </div>
-            <h2 className="font-serif text-[36px] md:text-[46px] text-primary dark:text-stone-100 tracking-tight font-medium leading-tight">
+            <h2 className="font-serif text-[28px] xs:text-[32px] sm:text-[38px] md:text-[46px] text-primary dark:text-stone-100 tracking-tight font-medium leading-tight">
               Crafted Engineering Foundations
             </h2>
-            <p className="font-sans text-[16px] text-on-surface-variant dark:text-stone-400 font-[450] leading-relaxed">
+            <p className="font-sans text-[14px] sm:text-[16px] text-on-surface-variant dark:text-stone-400 font-[450] leading-relaxed">
               Curated technical competencies across intelligent systems, robust server backends, and modern interfaces.
             </p>
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
-            <div className="inline-flex items-center gap-2 font-mono text-[12px] text-on-surface-variant dark:text-stone-400 bg-surface dark:bg-stone-900/80 px-4 py-2 rounded-full border border-outline-variant/60 dark:border-stone-800 shadow-sm">
+            <div className="inline-flex items-center gap-2 font-mono text-[11px] sm:text-[12px] text-on-surface-variant dark:text-stone-400 bg-surface dark:bg-stone-900/80 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-outline-variant/60 dark:border-stone-800 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-signal-orange animate-ping" />
               <span>Continuous Foundations Flow</span>
             </div>
@@ -115,16 +115,16 @@ export function SkillCarousel() {
         </div>
 
         {/* Continuous Seamless Marquee Track */}
-        <div className="relative w-full overflow-hidden mt-12 sm:mt-16 py-4 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-          <div className="animate-marquee-fast flex gap-8 sm:gap-10">
+        <div className="relative w-full overflow-hidden mt-8 sm:mt-12 md:mt-16 py-4 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+          <div className="animate-marquee-fast flex gap-5 sm:gap-8 md:gap-10">
             {marqueeSkills.map((skill, index) => (
               <article
                 key={`${skill.id}-${index}`}
-                className="shrink-0 w-[320px] sm:w-[420px] md:w-[450px] bg-surface/90 dark:bg-stone-900/60 rounded-container border border-outline-variant/60 dark:border-stone-800/90 p-7 sm:p-9 shadow-[0px_20px_42px_rgba(0,0,0,0.04)] dark:shadow-[0px_20px_42px_rgba(0,0,0,0.3)] flex flex-col justify-between kinetic-card select-none backdrop-blur-sm transition-all"
+                className="shrink-0 w-[280px] xs:w-[320px] sm:w-[380px] md:w-[420px] bg-surface/90 dark:bg-stone-900/60 rounded-container border border-outline-variant/60 dark:border-stone-800/90 p-5 sm:p-7 md:p-8 shadow-[0px_20px_42px_rgba(0,0,0,0.04)] dark:shadow-[0px_20px_42px_rgba(0,0,0,0.3)] flex flex-col justify-between kinetic-card select-none backdrop-blur-sm transition-all"
               >
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   {/* Visual Schematic Header */}
-                  <div className="w-full h-44 rounded-[24px] bg-[#141413] dark:bg-[#110F0E] p-5 relative overflow-hidden flex flex-col justify-between group border border-outline-variant/20 dark:border-stone-800/60">
+                  <div className="w-full h-36 sm:h-44 rounded-[20px] sm:rounded-[24px] bg-[#141413] dark:bg-[#110F0E] p-4 sm:p-5 relative overflow-hidden flex flex-col justify-between group border border-outline-variant/20 dark:border-stone-800/60">
                     <div className="absolute inset-0 bg-gradient-to-br from-signal-orange/15 via-transparent to-black/70 pointer-events-none" />
 
                     {/* Dynamic Graphic Schematic */}

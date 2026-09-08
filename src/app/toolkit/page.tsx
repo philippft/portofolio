@@ -148,43 +148,43 @@ const skillCategories: SkillCategory[] = [
 
 export default function ToolkitPage() {
   return (
-    <div className="max-w-max-width mx-auto px-4 sm:px-6 md:px-12 flex flex-col space-y-20 md:space-y-28">
+    <div className="max-w-max-width mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 flex flex-col space-y-16 sm:space-y-20 md:space-y-28 overflow-x-hidden">
       {/* HERO HEADER */}
       <ScrollReveal yOffset={30} duration={0.9}>
-        <section className="relative pt-4 md:pt-10">
-          <div className="absolute -right-8 -top-12 select-none pointer-events-none opacity-[0.03] text-[180px] md:text-[260px] font-serif font-black leading-none text-primary">
+        <section className="relative pt-2 sm:pt-6 md:pt-10 overflow-hidden">
+          <div className="hidden sm:block absolute -right-8 -top-12 select-none pointer-events-none opacity-[0.03] text-[160px] md:text-[220px] lg:text-[260px] font-serif font-black leading-none text-primary">
             SKILLS
           </div>
 
           <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface/90 dark:bg-stone-900/90 border border-outline-variant/60 dark:border-stone-800 text-primary dark:text-stone-200 font-mono text-[11px]">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-surface/90 dark:bg-stone-900/90 border border-outline-variant/60 dark:border-stone-800 text-primary dark:text-stone-200 font-mono text-[10px] sm:text-[11px]">
               <span className="w-2 h-2 rounded-full bg-signal-orange animate-ping" />
               <span className="font-mono text-signal-orange uppercase tracking-widest font-semibold">
                 • TECHNICAL DISCIPLINES &amp; COMPETENCIES // /TOOLKIT
               </span>
             </div>
 
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-surface/80 dark:bg-stone-900/80 border border-outline-variant/60 dark:border-stone-800/90 text-on-surface-variant dark:text-stone-400 font-mono text-[12px]">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface/80 dark:bg-stone-900/80 border border-outline-variant/60 dark:border-stone-800/90 text-on-surface-variant dark:text-stone-400 font-mono text-[11px] sm:text-[12px]">
               <Cpu className="w-4 h-4 text-signal-orange" />
               <span>4 Core Domains • 30+ Technologies</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-            <div className="lg:col-span-8 space-y-3">
-              <h1 className="font-serif text-[42px] sm:text-[54px] lg:text-[68px] text-primary dark:text-stone-50 tracking-tight leading-[1.05] font-medium">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-end">
+            <div className="lg:col-span-8 space-y-2.5 sm:space-y-3">
+              <h1 className="font-serif text-[36px] xs:text-[42px] sm:text-[52px] md:text-[60px] lg:text-[68px] text-primary dark:text-stone-50 tracking-tight leading-[1.06] font-medium">
                 Technical Foundations{" "}
                 <span className="italic font-normal text-on-surface-variant dark:text-stone-400">
                   &amp; Stack
                 </span>
               </h1>
-              <p className="font-sans text-[16px] sm:text-[17px] text-on-surface-variant dark:text-stone-400 max-w-2xl font-[450] leading-relaxed">
+              <p className="font-sans text-[15px] sm:text-[17px] text-on-surface-variant dark:text-stone-400 max-w-2xl font-[450] leading-relaxed">
                 Curated competencies honed through rigorous academic research, national algorithm competitions, and full-stack software deployments.
               </p>
             </div>
 
             <div className="lg:col-span-4 flex lg:justify-end">
-              <div className="p-4 rounded-2xl bg-surface/80 dark:bg-stone-900/80 border border-outline-variant/60 dark:border-stone-800/90 space-y-1 w-full sm:w-auto">
+              <div className="p-4 rounded-2xl bg-surface/80 dark:bg-stone-900/80 border border-outline-variant/60 dark:border-stone-800/90 space-y-1 w-full lg:w-auto">
                 <div className="flex items-center gap-2 font-mono text-[11px] text-signal-orange uppercase font-semibold">
                   <ShieldCheck className="w-4 h-4" />
                   <span>EVALUATED PROFICIENCY</span>
@@ -199,59 +199,59 @@ export default function ToolkitPage() {
       </ScrollReveal>
 
       {/* 4-CATEGORY BENTO GRID WITH STAGGER */}
-      <section className="space-y-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <section className="space-y-8 sm:space-y-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {skillCategories.map((cat, idx) => {
             const Icon = cat.icon;
             return (
               <ScrollReveal key={cat.id} delay={idx * 0.1} yOffset={35}>
-                <article className="bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[32px] p-7 sm:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between kinetic-card group backdrop-blur-sm transition-all h-full">
-                  <div className="space-y-6">
+                <article className="bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[28px] sm:rounded-[32px] p-6 sm:p-8 md:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between kinetic-card group backdrop-blur-sm transition-all h-full">
+                  <div className="space-y-5 sm:space-y-6">
                     {/* Category Header */}
                     <div className="flex items-start justify-between gap-4">
                       <div className="space-y-1">
-                        <div className="inline-flex items-center gap-2 font-mono text-[11px] text-signal-orange font-semibold tracking-wider uppercase">
+                        <div className="inline-flex items-center gap-2 font-mono text-[10px] sm:text-[11px] text-signal-orange font-semibold tracking-wider uppercase">
                           <span>{cat.eyebrow}</span>
                         </div>
-                        <h2 className="font-serif text-[26px] sm:text-[30px] text-primary dark:text-stone-100 font-semibold tracking-tight">
+                        <h2 className="font-serif text-[22px] xs:text-[24px] sm:text-[28px] md:text-[30px] text-primary dark:text-stone-100 font-semibold tracking-tight leading-snug">
                           {cat.title}
                         </h2>
                       </div>
 
-                      <div className="w-12 h-12 rounded-2xl bg-surface-container dark:bg-stone-800 border border-outline-variant/40 dark:border-stone-700/60 flex items-center justify-center text-signal-orange shrink-0 shadow-sm">
-                        <Icon className="w-6 h-6" />
+                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-surface-container dark:bg-stone-800 border border-outline-variant/40 dark:border-stone-700/60 flex items-center justify-center text-signal-orange shrink-0 shadow-sm">
+                        <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                       </div>
                     </div>
 
-                    <p className="font-sans text-[15px] text-on-surface-variant dark:text-stone-400 leading-relaxed font-[450]">
+                    <p className="font-sans text-[14px] sm:text-[15px] text-on-surface-variant dark:text-stone-400 leading-relaxed font-[450]">
                       {cat.description}
                     </p>
 
                     {/* Telemetry Metric Callout Box */}
-                    <div className="p-4.5 rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80 flex items-center justify-between">
+                    <div className="p-4 sm:p-4.5 rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80 flex items-center justify-between gap-3">
                       <div>
-                        <span className="font-mono text-[10px] uppercase tracking-widest text-on-surface-variant dark:text-stone-400 block mb-0.5">
+                        <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-widest text-on-surface-variant dark:text-stone-400 block mb-0.5">
                           {cat.telemetry.label}
                         </span>
-                        <span className="font-serif text-[24px] font-bold text-signal-orange">
+                        <span className="font-serif text-[20px] sm:text-[24px] font-bold text-signal-orange">
                           {cat.telemetry.value}
                         </span>
                       </div>
-                      <span className="font-mono text-[11px] text-on-surface-variant dark:text-stone-400 max-w-[180px] text-right">
+                      <span className="font-mono text-[10px] sm:text-[11px] text-on-surface-variant dark:text-stone-400 max-w-[170px] text-right">
                         {cat.telemetry.sub}
                       </span>
                     </div>
 
                     {/* Key Highlights Checklist */}
                     <div className="space-y-2 pt-1">
-                      <span className="font-mono text-[11px] text-on-surface-variant dark:text-stone-400 uppercase tracking-wider block font-medium">
+                      <span className="font-mono text-[10px] sm:text-[11px] text-on-surface-variant dark:text-stone-400 uppercase tracking-wider block font-medium">
                         Key Methodologies &amp; Capabilities
                       </span>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {cat.highlights.map((h) => (
                           <div
                             key={h}
-                            className="flex items-center gap-2 text-[13px] text-primary dark:text-stone-300 font-sans"
+                            className="flex items-center gap-2 text-[12px] sm:text-[13px] text-primary dark:text-stone-300 font-sans"
                           >
                             <CheckCircle2 className="w-3.5 h-3.5 text-signal-orange shrink-0" />
                             <span>{h}</span>
@@ -262,19 +262,19 @@ export default function ToolkitPage() {
                   </div>
 
                   {/* Tool Pills with Badges */}
-                  <div className="pt-6 border-t border-outline-variant/40 dark:border-stone-800 mt-6 space-y-3">
-                    <span className="font-mono text-[11px] text-on-surface-variant dark:text-stone-400 uppercase tracking-wider block font-medium">
+                  <div className="pt-5 sm:pt-6 border-t border-outline-variant/40 dark:border-stone-800 mt-5 sm:mt-6 space-y-3">
+                    <span className="font-mono text-[10px] sm:text-[11px] text-on-surface-variant dark:text-stone-400 uppercase tracking-wider block font-medium">
                       Technical Stack &amp; Libraries
                     </span>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {cat.tools.map((t) => (
                         <div
                           key={t.name}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container dark:bg-stone-800/70 border border-outline-variant/40 dark:border-stone-700/50 text-primary dark:text-stone-200 font-mono text-[11px]"
+                          className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-surface-container dark:bg-stone-800/70 border border-outline-variant/40 dark:border-stone-700/50 text-primary dark:text-stone-200 font-mono text-[10px] sm:text-[11px]"
                         >
                           <span className="font-semibold">{t.name}</span>
                           <span className="text-on-surface-variant/60 dark:text-stone-500">•</span>
-                          <span className="text-on-surface-variant dark:text-stone-400 text-[10px]">
+                          <span className="text-on-surface-variant dark:text-stone-400 text-[9px] sm:text-[10px]">
                             {t.tag}
                           </span>
                         </div>
@@ -291,18 +291,18 @@ export default function ToolkitPage() {
       {/* BOTTOM CTA INVITATION */}
       <ScrollReveal yOffset={40} duration={0.8}>
         <section className="w-full">
-          <div className="bg-surface/90 dark:bg-stone-900/60 rounded-container p-8 sm:p-14 border border-outline-variant/60 dark:border-stone-800/90 shadow-[0px_24px_54px_rgba(0,0,0,0.06)] dark:shadow-[0px_24px_54px_rgba(0,0,0,0.4)] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 backdrop-blur-sm transition-all">
+          <div className="bg-surface/90 dark:bg-stone-900/60 rounded-container p-6 sm:p-10 lg:p-14 border border-outline-variant/60 dark:border-stone-800/90 shadow-[0px_24px_54px_rgba(0,0,0,0.06)] dark:shadow-[0px_24px_54px_rgba(0,0,0,0.4)] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 backdrop-blur-sm transition-all">
             <div className="absolute -right-24 -bottom-24 w-80 h-80 rounded-full bg-signal-orange/10 blur-3xl pointer-events-none" />
 
-            <div className="space-y-3 max-w-xl z-10">
-              <div className="inline-flex items-center gap-2 text-signal-orange font-mono text-[11px] uppercase tracking-widest font-semibold">
+            <div className="space-y-3 max-w-xl z-10 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 text-signal-orange font-mono text-[11px] uppercase tracking-widest font-semibold justify-center md:justify-start">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>EMPIRICAL CODE ARCHIVE</span>
               </div>
-              <h2 className="font-serif text-[32px] sm:text-[40px] text-primary dark:text-stone-100 tracking-tight font-medium leading-tight">
+              <h2 className="font-serif text-[28px] sm:text-[34px] md:text-[40px] text-primary dark:text-stone-100 tracking-tight font-medium leading-tight">
                 See these technical competencies in production action.
               </h2>
-              <p className="font-sans text-[15px] text-on-surface-variant dark:text-stone-400 leading-relaxed font-[450]">
+              <p className="font-sans text-[14px] sm:text-[15px] text-on-surface-variant dark:text-stone-400 leading-relaxed font-[450]">
                 Explore canonical projects featuring machine learning pipelines, time-series forecasters, and full-stack web applications.
               </p>
             </div>
@@ -310,7 +310,7 @@ export default function ToolkitPage() {
             <div className="shrink-0 z-10 flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
               <Link
                 href="/projects"
-                className="magnetic-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-cta bg-primary text-canvas font-sans font-semibold text-[15px] shadow-[0px_16px_36px_rgba(0,0,0,0.18)] dark:shadow-[0px_16px_36px_rgba(0,0,0,0.3)] hover:bg-signal-orange hover:text-white transition-all duration-300 group"
+                className="magnetic-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 sm:px-8 sm:py-4 rounded-cta bg-primary text-canvas font-sans font-semibold text-[14px] sm:text-[15px] shadow-[0px_16px_36px_rgba(0,0,0,0.18)] dark:shadow-[0px_16px_36px_rgba(0,0,0,0.3)] hover:bg-signal-orange hover:text-white transition-all duration-300 group text-center"
               >
                 <span>Explore Projects Archive →</span>
               </Link>

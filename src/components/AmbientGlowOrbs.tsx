@@ -29,22 +29,22 @@ export function AmbientGlowOrbs() {
   }, []);
 
   return (
-    <>
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
       <div
         ref={orb1Ref}
-        className="ambient-glow w-[600px] h-[600px] -top-32 -left-32 bg-[#F37338]/[0.05] dark:bg-[#F37338]/[0.06] animate-pulse pointer-events-none"
+        className="ambient-glow w-[350px] sm:w-[500px] md:w-[600px] h-[350px] sm:h-[500px] md:h-[600px] -top-24 -left-24 sm:-top-32 sm:-left-32 bg-[#F37338]/[0.05] dark:bg-[#F37338]/[0.06] animate-pulse pointer-events-none"
         style={{ transform: "translate(0px, 0px)" }}
       />
       <div
         ref={orb2Ref}
-        className="ambient-glow w-[700px] h-[700px] top-[40vh] -right-48 bg-[#E5D7C7]/[0.2] dark:bg-[#F37338]/[0.035] pointer-events-none"
+        className="ambient-glow w-[400px] sm:w-[550px] md:w-[700px] h-[400px] sm:h-[550px] md:h-[700px] top-[40vh] -right-32 sm:-right-48 bg-[#E5D7C7]/[0.2] dark:bg-[#F37338]/[0.035] pointer-events-none"
         style={{ transform: "translate(0px, 0px)" }}
       />
       <div
         ref={orb3Ref}
-        className="ambient-glow w-[550px] h-[550px] bottom-10 left-1/4 bg-[#D97706]/[0.04] dark:bg-[#D97706]/[0.035] pointer-events-none"
+        className="ambient-glow w-[350px] sm:w-[450px] md:w-[550px] h-[350px] sm:h-[450px] md:h-[550px] bottom-10 left-1/4 bg-[#D97706]/[0.04] dark:bg-[#D97706]/[0.035] pointer-events-none"
         style={{ transform: "translate(0px, 0px)" }}
       />
-    </>
+    </div>
   );
 }

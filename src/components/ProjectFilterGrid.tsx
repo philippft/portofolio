@@ -25,14 +25,14 @@ export function ProjectFilterGrid() {
   const [filter, setFilter] = useState<CategoryFilter>("all");
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-10 sm:space-y-12">
       {/* Category Filter Buttons */}
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="inline-flex p-1.5 rounded-full bg-surface/90 dark:bg-stone-900/90 border border-outline-variant/60 dark:border-stone-800 gap-1 shadow-sm">
+        <div className="inline-flex p-1 sm:p-1.5 rounded-full bg-surface/90 dark:bg-stone-900/90 border border-outline-variant/60 dark:border-stone-800 gap-1 shadow-sm overflow-x-auto max-w-full">
           <button
             type="button"
             onClick={() => setFilter("all")}
-            className={`px-4.5 py-2 rounded-full font-sans text-[13px] transition-all ${
+            className={`px-3.5 sm:px-4.5 py-1.5 sm:py-2 rounded-full font-sans text-[12px] sm:text-[13px] whitespace-nowrap transition-all ${
               filter === "all"
                 ? "bg-primary text-canvas font-semibold shadow-sm"
                 : "text-on-surface-variant dark:text-stone-400 font-medium hover:text-primary dark:hover:text-stone-100"
@@ -43,7 +43,7 @@ export function ProjectFilterGrid() {
           <button
             type="button"
             onClick={() => setFilter("ai")}
-            className={`px-4.5 py-2 rounded-full font-sans text-[13px] transition-all ${
+            className={`px-3.5 sm:px-4.5 py-1.5 sm:py-2 rounded-full font-sans text-[12px] sm:text-[13px] whitespace-nowrap transition-all ${
               filter === "ai"
                 ? "bg-primary text-canvas font-semibold shadow-sm"
                 : "text-on-surface-variant dark:text-stone-400 font-medium hover:text-primary dark:hover:text-stone-100"
@@ -54,7 +54,7 @@ export function ProjectFilterGrid() {
           <button
             type="button"
             onClick={() => setFilter("web")}
-            className={`px-4.5 py-2 rounded-full font-sans text-[13px] transition-all ${
+            className={`px-3.5 sm:px-4.5 py-1.5 sm:py-2 rounded-full font-sans text-[12px] sm:text-[13px] whitespace-nowrap transition-all ${
               filter === "web"
                 ? "bg-primary text-canvas font-semibold shadow-sm"
                 : "text-on-surface-variant dark:text-stone-400 font-medium hover:text-primary dark:hover:text-stone-100"
@@ -72,9 +72,9 @@ export function ProjectFilterGrid() {
       {/* CLUSTER 01: AI & DATA SCIENCE */}
       {(filter === "all" || filter === "ai") && (
         <section className="space-y-6">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-signal-orange" />
+              <span className="w-2.5 h-2.5 rounded-full bg-signal-orange shrink-0" />
               <span className="font-mono text-[11px] tracking-widest uppercase text-primary dark:text-stone-300 font-semibold">
                 CLUSTER 01 // MACHINE INTELLIGENCE &amp; EMPIRICAL SYSTEMS
               </span>
@@ -88,7 +88,7 @@ export function ProjectFilterGrid() {
             {/* Card 1: Waste Image Classification (Wide 8-Col) */}
             <div className="md:col-span-12 lg:col-span-8">
               <ScrollReveal delay={0.05} yOffset={30}>
-                <article className="project-card bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[32px] p-7 md:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between group backdrop-blur-sm transition-all h-full">
+                <article className="project-card bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 md:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between group backdrop-blur-sm transition-all h-full">
                   <div>
                     <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
                       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas dark:bg-stone-950/80 border border-outline-variant/60 dark:border-stone-800 font-mono text-[11px] text-primary dark:text-stone-200">
@@ -104,12 +104,12 @@ export function ProjectFilterGrid() {
                     </div>
 
                     {/* ROC-PR Telemetry Visual */}
-                    <div className="p-4 rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80 mb-6 overflow-hidden">
-                      <div className="flex justify-between items-center mb-2 font-mono text-[11px] text-on-surface-variant dark:text-stone-400">
+                    <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80 mb-6 overflow-hidden">
+                      <div className="flex flex-col xs:flex-row justify-between xs:items-center gap-1 mb-2 font-mono text-[11px] text-on-surface-variant dark:text-stone-400">
                         <span>ROC-PR TELEMETRY // MULTI-CLASS EQUILIBRIUM</span>
                         <span className="text-signal-orange font-medium">Top-1 Accuracy: 98.1%</span>
                       </div>
-                      <svg className="w-full h-24 overflow-visible" fill="none" viewBox="0 0 600 90">
+                      <svg className="w-full h-20 sm:h-24 overflow-visible" fill="none" viewBox="0 0 600 90">
                         <line className="text-outline-variant/40 dark:text-stone-800" stroke="currentColor" strokeDasharray="3 3" x1="0" x2="600" y1="20" y2="20" />
                         <line className="text-outline-variant/40 dark:text-stone-800" stroke="currentColor" strokeDasharray="3 3" x1="0" x2="600" y1="50" y2="50" />
                         <line className="text-outline-variant/40 dark:text-stone-800" stroke="currentColor" strokeDasharray="3 3" x1="0" x2="600" y1="80" y2="80" />
@@ -219,7 +219,7 @@ export function ProjectFilterGrid() {
             {/* Card 2: Traditional Balinese Gamelan (Tall 4-Col) */}
             <div className="md:col-span-12 lg:col-span-4">
               <ScrollReveal delay={0.1} yOffset={30}>
-                <article className="project-card bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[32px] p-7 md:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between group backdrop-blur-sm transition-all h-full">
+                <article className="project-card bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 md:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between group backdrop-blur-sm transition-all h-full">
                   <div>
                     <div className="flex items-center justify-between mb-6">
                       <span className="font-mono text-[12px] text-signal-orange font-semibold">ACOUSTICS // DSP</span>
@@ -229,7 +229,7 @@ export function ProjectFilterGrid() {
                     </div>
 
                     {/* Acoustic FFT Spectrogram Bars Visual */}
-                    <div className="p-4 rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80 mb-6">
+                    <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80 mb-6">
                       <div className="font-mono text-[11px] text-on-surface-variant dark:text-stone-400 mb-3">FFT SPECTRAL COEFFICIENTS (20Hz - 22kHz)</div>
                       <div className="flex items-end gap-1.5 h-20 w-full">
                         {gamelanFftBars.map((bar, idx) => (
@@ -256,7 +256,7 @@ export function ProjectFilterGrid() {
 
                     <div className="mb-4">
                       <div className="flex items-baseline gap-2">
-                        <span className="font-mono text-[48px] sm:text-[56px] font-bold tracking-tight text-signal-orange leading-none">96%</span>
+                        <span className="font-mono text-[36px] xs:text-[44px] sm:text-[56px] font-bold tracking-tight text-signal-orange leading-none">96%</span>
                         <span className="font-mono text-[13px] text-on-surface-variant dark:text-stone-400 uppercase font-semibold">Accuracy</span>
                       </div>
                       <span className="font-mono text-[11px] uppercase tracking-widest text-on-surface-variant dark:text-stone-400 block mt-2">
@@ -264,7 +264,7 @@ export function ProjectFilterGrid() {
                       </span>
                     </div>
 
-                    <h2 className="font-serif text-[26px] text-primary dark:text-stone-100 mb-2 font-medium tracking-tight">
+                    <h2 className="font-serif text-[22px] sm:text-[26px] text-primary dark:text-stone-100 mb-2 font-medium tracking-tight">
                       Balinese Gamelan Preservation
                     </h2>
                     <p className="font-sans text-[15px] text-on-surface-variant dark:text-stone-400 leading-relaxed font-[450]">
@@ -283,9 +283,9 @@ export function ProjectFilterGrid() {
             </div>
 
             {/* Card 3: PsychoLens AI (6-Col) */}
-            <div className="md:col-span-6">
+            <div className="md:col-span-12 lg:col-span-6">
               <ScrollReveal delay={0.15} yOffset={30}>
-                <article className="project-card bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[32px] p-7 md:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between group backdrop-blur-sm transition-all h-full">
+                <article className="project-card bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 md:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between group backdrop-blur-sm transition-all h-full">
                   <div>
                     <div className="flex items-center justify-between mb-6">
                       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas dark:bg-stone-950/80 border border-outline-variant/60 dark:border-stone-800 font-mono text-[11px] text-primary dark:text-stone-200">
@@ -298,7 +298,7 @@ export function ProjectFilterGrid() {
                     </div>
 
                     {/* Attention Matrix Visual */}
-                    <div className="p-4 rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80 mb-6">
+                    <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80 mb-6">
                       <div className="flex justify-between font-mono text-[11px] text-on-surface-variant dark:text-stone-400 mb-2.5">
                         <span>LATENT ATTENTION MATRIX</span>
                         <span className="text-primary dark:text-stone-200 font-semibold">Dim: 768</span>
@@ -339,7 +339,7 @@ export function ProjectFilterGrid() {
 
                     <div className="mb-4">
                       <div className="flex items-baseline gap-2">
-                        <span className="font-mono text-[48px] sm:text-[56px] font-bold tracking-tight text-primary dark:text-stone-50 leading-none">8-Class</span>
+                        <span className="font-mono text-[36px] xs:text-[44px] sm:text-[56px] font-bold tracking-tight text-primary dark:text-stone-50 leading-none">8-Class</span>
                         <span className="font-mono text-[13px] text-signal-orange font-medium uppercase">Affective Depth</span>
                       </div>
                       <span className="font-mono text-[11px] uppercase tracking-widest text-on-surface-variant dark:text-stone-400 block mt-2">
@@ -347,7 +347,7 @@ export function ProjectFilterGrid() {
                       </span>
                     </div>
 
-                    <h2 className="font-serif text-[26px] text-primary dark:text-stone-100 mb-2 font-medium tracking-tight">
+                    <h2 className="font-serif text-[22px] sm:text-[26px] text-primary dark:text-stone-100 mb-2 font-medium tracking-tight">
                       PsychoLens AI Affective Discourse System
                     </h2>
                     <p className="font-sans text-[15px] text-on-surface-variant dark:text-stone-400 leading-relaxed font-[450]">
@@ -366,9 +366,9 @@ export function ProjectFilterGrid() {
             </div>
 
             {/* Card 4: SME Success Prediction (6-Col) */}
-            <div className="md:col-span-6">
+            <div className="md:col-span-12 lg:col-span-6">
               <ScrollReveal delay={0.2} yOffset={30}>
-                <article className="project-card bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[32px] p-7 md:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between group backdrop-blur-sm transition-all h-full">
+                <article className="project-card bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 md:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between group backdrop-blur-sm transition-all h-full">
                   <div>
                     <div className="flex items-center justify-between mb-6">
                       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas dark:bg-stone-950/80 border border-outline-variant/60 dark:border-stone-800 font-mono text-[11px] text-primary dark:text-stone-200">
@@ -381,26 +381,26 @@ export function ProjectFilterGrid() {
                     </div>
 
                     {/* Resampling Vector Visual */}
-                    <div className="p-4 rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80 mb-6">
+                    <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80 mb-6">
                       <div className="flex justify-between font-mono text-[11px] text-on-surface-variant dark:text-stone-400 mb-2">
                         <span>RESAMPLING CONVERGENCE</span>
                         <span className="text-signal-orange font-semibold">SMOTE-ENN</span>
                       </div>
                       <div className="grid grid-cols-2 gap-3">
-                        <div className="p-3 rounded-xl bg-surface-container dark:bg-stone-950/90 border border-outline-variant/40 dark:border-stone-800/80 text-center">
+                        <div className="p-2.5 sm:p-3 rounded-xl bg-surface-container dark:bg-stone-950/90 border border-outline-variant/40 dark:border-stone-800/80 text-center">
                           <span className="font-mono text-[11px] text-on-surface-variant dark:text-stone-400 block mb-1">Baseline Imbalance</span>
-                          <span className="font-mono text-xl font-bold text-on-surface-variant dark:text-stone-500">1 : 14.8</span>
+                          <span className="font-mono text-lg sm:text-xl font-bold text-on-surface-variant dark:text-stone-500">1 : 14.8</span>
                         </div>
-                        <div className="p-3 rounded-xl bg-surface-container dark:bg-stone-950/90 border border-signal-orange/30 text-center">
+                        <div className="p-2.5 sm:p-3 rounded-xl bg-surface-container dark:bg-stone-950/90 border border-signal-orange/30 text-center">
                           <span className="font-mono text-[11px] text-signal-orange block mb-1">Post SMOTE-ENN</span>
-                          <span className="font-mono text-xl font-bold text-signal-orange">1 : 1.02</span>
+                          <span className="font-mono text-lg sm:text-xl font-bold text-signal-orange">1 : 1.02</span>
                         </div>
                       </div>
                     </div>
 
                     <div className="mb-4">
                       <div className="flex items-baseline gap-2">
-                        <span className="font-mono text-[48px] sm:text-[56px] font-bold tracking-tight text-primary dark:text-stone-50 leading-none">+18.4%</span>
+                        <span className="font-mono text-[36px] xs:text-[44px] sm:text-[56px] font-bold tracking-tight text-primary dark:text-stone-50 leading-none">+18.4%</span>
                         <span className="font-mono text-[13px] text-signal-orange font-medium uppercase">Recall Delta</span>
                       </div>
                       <span className="font-mono text-[11px] uppercase tracking-widest text-on-surface-variant dark:text-stone-400 block mt-2">
@@ -408,7 +408,7 @@ export function ProjectFilterGrid() {
                       </span>
                     </div>
 
-                    <h2 className="font-serif text-[26px] text-primary dark:text-stone-100 mb-2 font-medium tracking-tight">
+                    <h2 className="font-serif text-[22px] sm:text-[26px] text-primary dark:text-stone-100 mb-2 font-medium tracking-tight">
                       SME Business Viability Forecaster
                     </h2>
                     <p className="font-sans text-[15px] text-on-surface-variant dark:text-stone-400 leading-relaxed font-[450]">
@@ -429,10 +429,10 @@ export function ProjectFilterGrid() {
             {/* Card 5: Water Level Time Series (12-Col Landscape) */}
             <div className="md:col-span-12">
               <ScrollReveal delay={0.25} yOffset={30}>
-                <article className="project-card bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[32px] p-7 md:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between group backdrop-blur-sm transition-all">
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <article className="project-card bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 md:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between group backdrop-blur-sm transition-all">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
                     <div className="lg:col-span-7">
-                      <div className="flex items-center gap-2 mb-3">
+                      <div className="flex flex-wrap items-center gap-2 mb-3">
                         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-canvas dark:bg-stone-950/80 border border-outline-variant/60 dark:border-stone-800 font-mono text-[11px] text-primary dark:text-stone-200">
                           <span className="w-2 h-2 rounded-full bg-signal-orange" />
                           <span>Multi-Step Horizon Forecaster</span>
@@ -442,7 +442,7 @@ export function ProjectFilterGrid() {
 
                       <div className="mb-4">
                         <div className="flex items-baseline gap-3">
-                          <span className="font-mono text-[48px] sm:text-[56px] font-bold tracking-tight text-primary dark:text-stone-50 leading-none">0.041</span>
+                          <span className="font-mono text-[36px] xs:text-[44px] sm:text-[56px] font-bold tracking-tight text-primary dark:text-stone-50 leading-none">0.041</span>
                           <span className="font-mono text-[13px] text-signal-orange font-medium uppercase bg-surface-container dark:bg-stone-950 px-2 py-0.5 rounded border border-signal-orange/30">MSE HORIZON</span>
                         </div>
                         <span className="font-mono text-[11px] uppercase tracking-widest text-on-surface-variant dark:text-stone-400 block mt-2">
@@ -450,7 +450,7 @@ export function ProjectFilterGrid() {
                         </span>
                       </div>
 
-                      <h2 className="font-serif text-[26px] sm:text-[30px] text-primary dark:text-stone-100 mb-2 font-medium tracking-tight">
+                      <h2 className="font-serif text-[22px] sm:text-[26px] md:text-[30px] text-primary dark:text-stone-100 mb-2 font-medium tracking-tight">
                         Hydrological Wave &amp; Discharge Rate Forecasting
                       </h2>
                       <p className="font-sans text-[15px] text-on-surface-variant dark:text-stone-400 max-w-xl leading-relaxed font-[450]">
@@ -466,12 +466,12 @@ export function ProjectFilterGrid() {
                     </div>
 
                     {/* Sparkline Waveform Visual */}
-                    <div className="lg:col-span-5 p-4.5 rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80">
+                    <div className="lg:col-span-5 p-3.5 sm:p-4.5 rounded-xl sm:rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80 overflow-hidden">
                       <div className="flex justify-between font-mono text-[11px] text-on-surface-variant dark:text-stone-400 mb-2">
                         <span>PREDICTION CONFIDENCE BAND (95% CI)</span>
                         <span className="text-signal-orange font-medium">12-Step Ahead</span>
                       </div>
-                      <svg className="w-full h-32 overflow-visible" fill="none" viewBox="0 0 400 120">
+                      <svg className="w-full h-28 sm:h-32 overflow-visible" fill="none" viewBox="0 0 400 120">
                         {/* Shaded Confidence Polygon */}
                         <motion.polygon
                           className="fill-signal-orange/15"
@@ -544,9 +544,9 @@ export function ProjectFilterGrid() {
       {/* CLUSTER 02: FULL-STACK WEB SYSTEMS */}
       {(filter === "all" || filter === "web") && (
         <section className="space-y-6">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-primary dark:text-stone-200" />
+              <span className="w-2.5 h-2.5 rounded-full bg-primary dark:bg-stone-200 shrink-0" />
               <span className="font-mono text-[11px] tracking-widest uppercase text-primary dark:text-stone-300 font-semibold">
                 CLUSTER 02 // FULL-STACK WEB SYSTEMS &amp; ENTERPRISE INTEGRATIONS
               </span>
@@ -559,7 +559,7 @@ export function ProjectFilterGrid() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Card A: Orinimo Commerce Platform */}
             <ScrollReveal delay={0.05} yOffset={30}>
-              <article className="project-card bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[32px] p-7 md:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between group backdrop-blur-sm transition-all h-full">
+              <article className="project-card bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 md:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between group backdrop-blur-sm transition-all h-full">
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="font-mono text-[12px] text-signal-orange font-semibold">TRANSACTIONAL COMMERCE</span>
@@ -568,12 +568,12 @@ export function ProjectFilterGrid() {
                     </span>
                   </div>
 
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas dark:bg-stone-950/80 border border-outline-variant/60 dark:border-stone-800 font-mono text-[11px] text-primary dark:text-stone-300 mb-4">
-                    <span className="w-1.5 h-1.5 rounded-full bg-signal-orange" />
-                    <span>Laravel MVC • Fonnte WhatsApp OTP • Token-based Auth</span>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas dark:bg-stone-950/80 border border-outline-variant/60 dark:border-stone-800 font-mono text-[11px] text-primary dark:text-stone-300 mb-4 max-w-full overflow-hidden text-ellipsis whitespace-nowrap">
+                    <span className="w-1.5 h-1.5 rounded-full bg-signal-orange shrink-0" />
+                    <span className="truncate">Laravel MVC • Fonnte WhatsApp OTP • Token Auth</span>
                   </div>
 
-                  <h2 className="font-serif text-[26px] text-primary dark:text-stone-100 mb-2 font-medium tracking-tight">
+                  <h2 className="font-serif text-[22px] sm:text-[26px] text-primary dark:text-stone-100 mb-2 font-medium tracking-tight">
                     Orinimo Commerce Platform
                   </h2>
                   <p className="font-sans text-[15px] text-on-surface-variant dark:text-stone-400 mb-6 leading-relaxed font-[450]">
@@ -581,7 +581,7 @@ export function ProjectFilterGrid() {
                   </p>
 
                   {/* Specification Spec Box */}
-                  <div className="p-4 rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80 mb-4 font-mono text-[12px] space-y-2 text-on-surface-variant dark:text-stone-400">
+                  <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80 mb-4 font-mono text-[12px] space-y-2 text-on-surface-variant dark:text-stone-400">
                     <div className="flex justify-between border-b border-outline-variant/30 dark:border-stone-800/50 pb-1.5">
                       <span>State Machines</span>
                       <span className="text-primary dark:text-stone-200">Cart → Checkout → Dispatched</span>
@@ -608,7 +608,7 @@ export function ProjectFilterGrid() {
 
             {/* Card B: Tempe Iris Logistics & ERP */}
             <ScrollReveal delay={0.1} yOffset={30}>
-              <article className="project-card bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[32px] p-7 md:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between group backdrop-blur-sm transition-all h-full">
+              <article className="project-card bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 md:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between group backdrop-blur-sm transition-all h-full">
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="font-mono text-[12px] text-signal-orange font-semibold">INSTITUTIONAL ERP</span>
@@ -617,12 +617,12 @@ export function ProjectFilterGrid() {
                     </span>
                   </div>
 
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas dark:bg-stone-950/80 border border-outline-variant/60 dark:border-stone-800 font-mono text-[11px] text-primary dark:text-stone-300 mb-4">
-                    <span className="w-1.5 h-1.5 rounded-full bg-signal-orange" />
-                    <span>FMIPA Inventory System • Mailtrap Alerts • Dompdf Engine</span>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas dark:bg-stone-950/80 border border-outline-variant/60 dark:border-stone-800 font-mono text-[11px] text-primary dark:text-stone-300 mb-4 max-w-full overflow-hidden text-ellipsis whitespace-nowrap">
+                    <span className="w-1.5 h-1.5 rounded-full bg-signal-orange shrink-0" />
+                    <span className="truncate">FMIPA Inventory System • Mailtrap • Dompdf</span>
                   </div>
 
-                  <h2 className="font-serif text-[26px] text-primary dark:text-stone-100 mb-2 font-medium tracking-tight">
+                  <h2 className="font-serif text-[22px] sm:text-[26px] text-primary dark:text-stone-100 mb-2 font-medium tracking-tight">
                     Tempe Iris Logistics &amp; ERP
                   </h2>
                   <p className="font-sans text-[15px] text-on-surface-variant dark:text-stone-400 mb-6 leading-relaxed font-[450]">
@@ -630,7 +630,7 @@ export function ProjectFilterGrid() {
                   </p>
 
                   {/* Specification Spec Box */}
-                  <div className="p-4 rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80 mb-4 font-mono text-[12px] space-y-2 text-on-surface-variant dark:text-stone-400">
+                  <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80 mb-4 font-mono text-[12px] space-y-2 text-on-surface-variant dark:text-stone-400">
                     <div className="flex justify-between border-b border-outline-variant/30 dark:border-stone-800/50 pb-1.5">
                       <span>Audit Logging</span>
                       <span className="text-primary dark:text-stone-200">Immutable Ledger Events</span>
