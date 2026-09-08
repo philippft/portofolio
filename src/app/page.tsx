@@ -46,11 +46,10 @@ function ProfileOrbitalPhoto({ className = "" }: { className?: string }) {
               alt="Philip Filadelphia Tomasui - AI/ML & Systems Engineer"
               fill
               priority
-              sizes="(max-width: 640px) 230px, (max-width: 1024px) 270px, 300px"
-              className="object-cover rounded-full grayscale contrast-[1.1] opacity-90 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+              quality={100}
+              sizes="(max-width: 640px) 460px, (max-width: 1024px) 540px, 600px"
+              className="object-cover object-top rounded-full group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             />
-            {/* Subtle warm ambient vignette */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 group-hover:opacity-15 transition-opacity duration-700 pointer-events-none" />
           </div>
 
           {/* Subtle orbital bottom dial badge */}
