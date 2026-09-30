@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -9,6 +10,7 @@ interface GatewayCard {
   description: string;
   tags: string[];
   schematic: "ai" | "backend" | "frontend";
+  imageUrl: string;
   href: string;
 }
 
@@ -19,6 +21,7 @@ const gatewayCards: GatewayCard[] = [
     description: "Predictive modeling & robust data pipelines.",
     tags: ["Text Classification", "Sound Classification", "Predictive Analysis"],
     schematic: "ai",
+    imageUrl: "/images/ai-cover.jpg",
     href: "/toolkit",
   },
   {
@@ -27,6 +30,7 @@ const gatewayCards: GatewayCard[] = [
     description: "Scalable server-side logic & secure databases.",
     tags: ["RESTful APIs", "Database Design", "System Authentication"],
     schematic: "backend",
+    imageUrl: "/images/backend-cover.jpg",
     href: "/toolkit",
   },
   {
@@ -35,69 +39,13 @@ const gatewayCards: GatewayCard[] = [
     description: "Responsive, intuitive, and data-driven experiences.",
     tags: ["Responsive UI", "State Management", "Interactive Design"],
     schematic: "frontend",
+    imageUrl: "/images/frontend-cover.jpg",
     href: "/toolkit",
   },
 ];
 
-// Compact schematic visual per card
-function CardSchematic({ type }: { type: GatewayCard["schematic"] }) {
-  if (type === "ai") {
-    return (
-      <svg
-        className="w-full h-full text-signal-orange opacity-80"
-        fill="none"
-        viewBox="0 0 160 56"
-        aria-hidden="true"
-      >
-        <path
-          d="M0 36 C 28 10, 50 50, 80 26 C 110 6, 132 44, 160 20"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeWidth="2"
-        />
-        <path
-          d="M0 44 C 36 56, 70 14, 100 40 C 128 58, 140 20, 160 36"
-          stroke="#A8A29E"
-          strokeDasharray="3 3"
-          strokeWidth="1"
-        />
-        <circle cx="80" cy="26" fill="#F37338" r="3.5" />
-        <circle cx="130" cy="44" fill="#F5F5F4" r="2.5" opacity="0.6" />
-      </svg>
-    );
-  }
-  if (type === "backend") {
-    return (
-      <div className="flex items-center gap-2 justify-center w-full h-full">
-        <div className="px-2 py-1 rounded-md bg-white/10 border border-white/15 text-white font-mono text-[9px]">
-          REST API
-        </div>
-        <div className="w-4 h-[1px] bg-signal-orange" />
-        <div className="px-2 py-1 rounded-md bg-signal-orange/20 border border-signal-orange text-signal-orange font-mono text-[9px]">
-          GATEWAY
-        </div>
-        <div className="w-4 h-[1px] bg-signal-orange" />
-        <div className="px-2 py-1 rounded-md bg-white/10 border border-white/15 text-white font-mono text-[9px]">
-          DB ORM
-        </div>
-      </div>
-    );
-  }
-  // frontend
-  return (
-    <div className="grid grid-cols-3 gap-1.5 w-full max-w-[140px] mx-auto h-full items-center">
-      <div className="h-8 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center text-signal-orange font-mono text-[8px]">
-        REACT
-      </div>
-      <div className="h-8 rounded-lg bg-white/10 border border-signal-orange/40 flex items-center justify-center text-white font-mono text-[8px]">
-        TWC
-      </div>
-      <div className="h-8 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center text-signal-orange font-mono text-[8px]">
-        UI
-      </div>
-    </div>
-  );
-}
+// Gradient overlay color matches the card's dark surface token
+const CARD_BG = "#161413"; // --color-surface dark value
 
 export function EngineeringGatewayCards() {
   return (
@@ -125,12 +73,22 @@ export function EngineeringGatewayCards() {
             aria-label={`${card.title} — View details`}
             className="gateway-card group shrink-0 snap-start w-[220px] xs:w-[240px] bg-surface/90 dark:bg-stone-900/70 rounded-card border border-outline-variant/60 dark:border-stone-800/90 flex flex-col overflow-hidden shadow-[0px_12px_28px_rgba(0,0,0,0.05)] dark:shadow-[0px_12px_28px_rgba(0,0,0,0.3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-signal-orange"
           >
-            {/* Mini schematic preview */}
-            <div className="w-full h-[68px] bg-[#141413] dark:bg-[#110F0E] relative overflow-hidden flex items-center justify-center px-3 border-b border-outline-variant/20 dark:border-stone-800/60">
-              <div className="absolute inset-0 bg-gradient-to-br from-signal-orange/10 via-transparent to-black/60 pointer-events-none" />
-              <div className="relative z-10 w-full h-full flex items-center">
-                <CardSchematic type={card.schematic} />
-              </div>
+            {/* Cover image with gradient overlay */}
+            <div className="relative w-full h-32 overflow-hidden rounded-t-card shrink-0">
+              <Image
+                src={card.imageUrl}
+                alt={`${card.title} cover`}
+                fill
+                sizes="240px"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+              />
+              {/* Gradient: transparent top → card dark bg bottom */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: `linear-gradient(to bottom, transparent 30%, ${CARD_BG} 100%)`,
+                }}
+              />
             </div>
 
             {/* Card body */}
