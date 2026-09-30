@@ -119,7 +119,7 @@ export default async function HomePage() {
                   Informatics Student at Universitas Udayana | AI/ML &amp; Full-Stack Engineer
                 </p>
                 <p className="font-sans text-[15px] sm:text-[16px] md:text-[17px] text-on-surface-variant dark:text-stone-300 leading-relaxed font-[450]">
-                  I bridge the gap between robust back-end systems and intelligent data solutions — from AI tools for cultural preservation to secure web platforms built from scratch.
+                  Building intelligent data solutions and scalable web platforms—from AI models to robust back-end systems.
                 </p>
               </div>
 

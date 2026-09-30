@@ -142,3 +142,28 @@
   background: var(--color-outline-variant);
   border-radius: 9999px;
 }
+
+/* Hide scrollbar for swipeable carousel (gateway cards) */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Gateway Card — subtle lift + border highlight on interaction */
+.gateway-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease;
+}
+.gateway-card:hover,
+.gateway-card:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow);
+  border-color: rgba(243, 115, 56, 0.35);
+}
+.gateway-card:active {
+  transform: scale(0.985) translateY(-1px);
+}

@@ -113,13 +113,8 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-on-tertiary-container dark:text-stone-400 text-center sm:text-left">
-          <p>© 2025 Philip Tomasui. Geometric Modernism × Kinetic Editorial Intelligence.</p>
-          <p className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-signal-orange shrink-0" />
-            <span>Crafted with Editorial Precision • Bali, Indonesia</span>
-          </p>
+        <div className="pt-8 flex items-center justify-center font-mono text-[11px] text-on-tertiary-container dark:text-stone-400 text-center">
+          <p>© 2026 Philip Tomasui. Crafted in Bali, Indonesia.</p>
         </div>
       </div>
     </footer>

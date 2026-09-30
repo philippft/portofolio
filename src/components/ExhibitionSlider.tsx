@@ -2,6 +2,7 @@
 
 import { Award, CheckCircle, Sparkles } from "lucide-react";
 import { ExhibitionItem } from "@/types";
+import { LeadershipGatewayCards } from "@/components/LeadershipGatewayCards";
 
 const exhibitionsData: ExhibitionItem[] = [
   {
@@ -61,34 +62,40 @@ export function ExhibitionSlider() {
   return (
     <section className="w-full relative overflow-hidden" id="leadership-section">
       <div className="flex flex-col">
-        {/* Header with Exhibition Metadata */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6">
-          <div className="space-y-2.5 sm:space-y-3 max-w-xl">
-            <div className="inline-flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-signal-orange" />
-              <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-primary dark:text-stone-300 font-semibold">
-                • EXHIBITION GALLERY // IMPACT
-              </span>
+
+        {/* ── MOBILE: compact gateway cards (< md) ── */}
+        <LeadershipGatewayCards />
+
+        {/* ── DESKTOP: full marquee (≥ md) ── */}
+        <div className="hidden md:flex flex-col">
+          {/* Header with Exhibition Metadata */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6">
+            <div className="space-y-2.5 sm:space-y-3 max-w-xl">
+              <div className="inline-flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-signal-orange" />
+                <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-primary dark:text-stone-300 font-semibold">
+                  • EXHIBITION GALLERY // IMPACT
+                </span>
+              </div>
+              <h2 className="font-serif text-[28px] xs:text-[32px] sm:text-[38px] md:text-[46px] text-primary dark:text-stone-100 tracking-tight font-medium leading-tight">
+                Leadership &amp; Institutional Impact
+              </h2>
+              <p className="font-sans text-[14px] sm:text-[16px] text-on-surface-variant dark:text-stone-400 font-[450] leading-relaxed">
+                Fostering technological competence across student cohorts and earning top national research accolades.
+              </p>
             </div>
-            <h2 className="font-serif text-[28px] xs:text-[32px] sm:text-[38px] md:text-[46px] text-primary dark:text-stone-100 tracking-tight font-medium leading-tight">
-              Leadership &amp; Institutional Impact
-            </h2>
-            <p className="font-sans text-[14px] sm:text-[16px] text-on-surface-variant dark:text-stone-400 font-[450] leading-relaxed">
-              Fostering technological competence across student cohorts and earning top national research accolades.
-            </p>
+
+            <div className="flex items-center gap-3 shrink-0">
+              <div className="inline-flex items-center gap-2 font-mono text-[11px] sm:text-[12px] text-on-surface-variant dark:text-stone-400 bg-surface dark:bg-stone-900/80 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-outline-variant/60 dark:border-stone-800 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-signal-orange animate-ping" />
+                <span>Continuous Exhibition Flow</span>
+              </div>
+            </div>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0">
-            <div className="inline-flex items-center gap-2 font-mono text-[11px] sm:text-[12px] text-on-surface-variant dark:text-stone-400 bg-surface dark:bg-stone-900/80 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-outline-variant/60 dark:border-stone-800 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-signal-orange animate-ping" />
-              <span>Continuous Exhibition Flow</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Seamless Continuous Marquee Track */}
-        <div className="relative w-full overflow-hidden mt-8 sm:mt-12 md:mt-16 py-4 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
-          <div className="animate-marquee flex gap-5 sm:gap-8 md:gap-10">
+          {/* Seamless Continuous Marquee Track */}
+          <div className="relative w-full overflow-hidden mt-8 sm:mt-12 md:mt-16 py-4 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+            <div className="animate-marquee flex gap-5 sm:gap-8 md:gap-10">
             {marqueeItems.map((item, index) => (
               <article
                 key={`${item.id}-${index}`}
@@ -190,8 +197,10 @@ export function ExhibitionSlider() {
                 </div>
               </article>
             ))}
+            </div>
           </div>
-        </div>
+        </div>{/* end desktop marquee wrapper */}
+
       </div>
     </section>
   );

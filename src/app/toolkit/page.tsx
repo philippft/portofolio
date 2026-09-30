@@ -4,145 +4,91 @@ import {
   Brain,
   Server,
   Layers,
-  Code2,
   Cpu,
   Sparkles,
   ShieldCheck,
-  CheckCircle2,
 } from "lucide-react";
+
+interface FeaturedProject {
+  name: string;
+  detail: string;
+}
 
 interface SkillCategory {
   id: string;
   title: string;
-  badge: string;
   eyebrow: string;
   description: string;
   icon: typeof Brain;
-  tools: { name: string; tag: string; level: string }[];
-  telemetry: { label: string; value: string; sub: string };
-  highlights: string[];
+  featuredProjects: FeaturedProject[];
+  tags: string[];
 }
 
 const skillCategories: SkillCategory[] = [
   {
     id: "ml-ai",
-    title: "Machine Learning & AI Engineering",
-    badge: "CORE DISCIPLINE",
-    eyebrow: "EMPIRICAL MODELING & SOTA ARCHITECTURES",
-    description:
-      "End-to-end model development from empirical formulation, custom loss metrics, hyperparameter tuning to quantized TensorRT & ONNX runtime acceleration.",
+    title: "AI & Data Engineering",
+    eyebrow: "PREDICTIVE MODELING & DATA PIPELINES",
+    description: "Predictive modeling & robust data pipelines.",
     icon: Brain,
-    tools: [
-      { name: "PyTorch", tag: "Deep Learning", level: "Advanced" },
-      { name: "Scikit-Learn", tag: "Statistical ML", level: "Advanced" },
-      { name: "LightGBM", tag: "Gradient Boosting", level: "Expert" },
-      { name: "XGBoost", tag: "Ensemble Models", level: "Advanced" },
-      { name: "AdaBoost", tag: "Adaptive Boosting", level: "Advanced" },
-      { name: "Hugging Face", tag: "NLP Transformers", level: "Proficient" },
-      { name: "OpenCV", tag: "Computer Vision", level: "Proficient" },
-      { name: "Librosa", tag: "Audio DSP & MFCC", level: "Advanced" },
-      { name: "TensorRT", tag: "Inference Latency", level: "Proficient" },
-      { name: "Pandas & NumPy", tag: "Data Engineering", level: "Expert" },
+    featuredProjects: [
+      {
+        name: "SATRIA DATA Challenge",
+        detail:
+          "Built an image processing pipeline achieving a 0.972 F1-score with EfficientNetB3.",
+      },
+      {
+        name: "PsychoLens AI",
+        detail:
+          "Engineered an NLP emotion classification system using IndoBERT Transformer.",
+      },
+      {
+        name: "Gamelan Audio AI",
+        detail:
+          "Designed an audio classification system for Balinese instruments with 96% accuracy.",
+      },
     ],
-    telemetry: {
-      label: "PEAK EMPIRICAL VALIDATION",
-      value: "0.972 F1",
-      sub: "SATRIA DATA national ML benchmark",
-    },
-    highlights: [
-      "Custom Loss & Evaluation Metrics",
-      "Perceptual Hashing & Edge Deduplication",
-      "Hybrid SMOTE-ENN Class Resampling",
-      "Time-Series Horizon Forecasting (SARIMA)",
-    ],
+    tags: ["Text Classification", "Sound Classification", "Predictive Analysis"],
   },
   {
     id: "backend-systems",
-    title: "Distributed Back-End & Systems",
-    badge: "HIGH AVAILABILITY",
-    eyebrow: "SERVER ARCHITECTURE & DATA MODELING",
-    description:
-      "Architecting resilient multi-tier server backends, strictly normalized relational schemas, asynchronous queue processing, and containerized deployment workflows.",
+    title: "Back-End Architecture",
+    eyebrow: "SCALABLE SERVER-SIDE LOGIC & DATABASES",
+    description: "Scalable server-side logic & secure databases.",
     icon: Server,
-    tools: [
-      { name: "Laravel (Eloquent ORM)", tag: "PHP Framework", level: "Expert" },
-      { name: "Node.js", tag: "Async Runtime", level: "Advanced" },
-      { name: "Express.js", tag: "REST Endpoints", level: "Advanced" },
-      { name: "MySQL", tag: "Relational DB", level: "Advanced" },
-      { name: "Docker", tag: "Containerization", level: "Proficient" },
-      { name: "RESTful APIs", tag: "Contract Design", level: "Expert" },
-      { name: "Redis", tag: "In-Memory Cache", level: "Proficient" },
-      { name: "Microservices", tag: "System Topology", level: "Proficient" },
+    featuredProjects: [
+      {
+        name: "Tempe Iris System",
+        detail:
+          "Architected core loan logic, automated Mailtrap alerts, and dynamic Dompdf document generation.",
+      },
+      {
+        name: "SIC Website API",
+        detail:
+          "Designed MySQL relational schemas and built a complete RESTful API using Express.js.",
+      },
     ],
-    telemetry: {
-      label: "CONCURRENCY RUNTIME",
-      value: "< 45ms",
-      sub: "Optimized 3NF queries & database indexing",
-    },
-    highlights: [
-      "Transactional Order State Machines",
-      "Event-Driven WhatsApp & Email Webhooks",
-      "Multi-Tenant Hierarchical RBAC",
-      "Dynamic PDF & Document Stream Engines",
-    ],
+    tags: ["RESTful APIs", "Database Design", "System Authentication"],
   },
   {
-    id: "frontend-ui",
-    title: "Modern Front-End & Interface Craft",
-    badge: "PRECISION INTERACTION",
-    eyebrow: "COMPONENT SYSTEMS & TACTILE PHYSICS",
-    description:
-      "Developing responsive interface architectures with tactile spring physics, accessible design tokens, and fluid layout responsiveness across modern viewports.",
+    id: "fullstack-web",
+    title: "Full-Stack & Web Interfaces",
+    eyebrow: "END-TO-END WEB PLATFORMS & EXPERIENCES",
+    description: "End-to-end web platforms and data-driven experiences.",
     icon: Layers,
-    tools: [
-      { name: "React 18", tag: "UI Framework", level: "Advanced" },
-      { name: "Next.js (App Router)", tag: "Full-Stack React", level: "Advanced" },
-      { name: "Tailwind CSS", tag: "Design Tokens", level: "Expert" },
-      { name: "TypeScript", tag: "Static Typing", level: "Advanced" },
-      { name: "Kinetic Motion", tag: "Physics & Parallax", level: "Advanced" },
-      { name: "CSS Variables", tag: "Theming Systems", level: "Expert" },
+    featuredProjects: [
+      {
+        name: "Orinimo Store",
+        detail:
+          "Developed an MVC platform with WhatsApp OTP integration, secure auth, and automated reporting.",
+      },
+      {
+        name: "CBR Expert System",
+        detail:
+          "Designed a web-based AI expert system applying Case-Based Reasoning.",
+      },
     ],
-    telemetry: {
-      label: "LIGHTHOUSE SCORE",
-      value: "100%",
-      sub: "Zero layout shift & optimized Core Web Vitals",
-    },
-    highlights: [
-      "SSR-Safe Dark & Light Mode Orchestration",
-      "Kinetic Magnetic Physics & Parallax Orbs",
-      "Procedural Film Grain & SVG Shader Emulation",
-      "Responsive Accessible Bento Grid Systems",
-    ],
-  },
-  {
-    id: "languages-tooling",
-    title: "Core Languages & Developer Tooling",
-    badge: "POLYGLOT DIALECTS",
-    eyebrow: "MULTI-PARADIGM SYNTAX & ENVIRONMENTS",
-    description:
-      "Multi-paradigm programming across object-oriented systems, high-performance imperative code, shell scripting, and rigorous version control.",
-    icon: Code2,
-    tools: [
-      { name: "Python 3", tag: "Scientific & Systems", level: "Expert" },
-      { name: "PHP 8", tag: "Server Architecture", level: "Expert" },
-      { name: "JavaScript / TypeScript", tag: "Universal Full-Stack", level: "Advanced" },
-      { name: "Java", tag: "OOP & Enterprise", level: "Proficient" },
-      { name: "C", tag: "Low-Level Computing", level: "Proficient" },
-      { name: "Git & GitHub", tag: "Version Control", level: "Advanced" },
-      { name: "Linux / Bash", tag: "POSIX CLI", level: "Advanced" },
-      { name: "Postman", tag: "API Verification", level: "Advanced" },
-    ],
-    telemetry: {
-      label: "PUBLIC COMMITS VOLUME",
-      value: "1,248+",
-      sub: "Verified cross-repository git telemetry",
-    },
-    highlights: [
-      "Rigorous Version Control & Git Flow",
-      "POSIX Command Line Automation",
-      "Strict Static Typing & Linting Enforcement",
-      "Academic Research Code Reproducibility",
-    ],
+    tags: ["Responsive UI", "MVC Architecture", "Interactive Design"],
   },
 ];
 
@@ -166,7 +112,7 @@ export default function ToolkitPage() {
 
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface/80 dark:bg-stone-900/80 border border-outline-variant/60 dark:border-stone-800/90 text-on-surface-variant dark:text-stone-400 font-mono text-[11px] sm:text-[12px]">
               <Cpu className="w-4 h-4 text-signal-orange" />
-              <span>4 Core Domains • 30+ Technologies</span>
+              <span>3 Core Domains</span>
             </div>
           </div>
 
@@ -198,89 +144,72 @@ export default function ToolkitPage() {
         </section>
       </ScrollReveal>
 
-      {/* 4-CATEGORY BENTO GRID WITH STAGGER */}
-      <section className="space-y-8 sm:space-y-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+      {/* 3-DOMAIN STACK */}
+      <section className="space-y-5 sm:space-y-6">
+        <div className="grid grid-cols-1 gap-5 sm:gap-6">
           {skillCategories.map((cat, idx) => {
             const Icon = cat.icon;
             return (
-              <ScrollReveal key={cat.id} delay={idx * 0.1} yOffset={35}>
-                <article className="bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[28px] sm:rounded-[32px] p-6 sm:p-8 md:p-9 shadow-[0px_24px_48px_rgba(0,0,0,0.04)] dark:shadow-[0px_24px_48px_rgba(0,0,0,0.3)] flex flex-col justify-between kinetic-card group backdrop-blur-sm transition-all h-full">
-                  <div className="space-y-5 sm:space-y-6">
-                    {/* Category Header */}
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="space-y-1">
-                        <div className="inline-flex items-center gap-2 font-mono text-[10px] sm:text-[11px] text-signal-orange font-semibold tracking-wider uppercase">
-                          <span>{cat.eyebrow}</span>
-                        </div>
-                        <h2 className="font-serif text-[22px] xs:text-[24px] sm:text-[28px] md:text-[30px] text-primary dark:text-stone-100 font-semibold tracking-tight leading-snug">
-                          {cat.title}
-                        </h2>
-                      </div>
+              <ScrollReveal key={cat.id} delay={idx * 0.08} yOffset={30}>
+                <article className="bg-surface/90 dark:bg-stone-900/60 border border-outline-variant/60 dark:border-stone-800/90 rounded-[24px] sm:rounded-[28px] p-5 sm:p-7 shadow-[0px_16px_36px_rgba(0,0,0,0.04)] dark:shadow-[0px_16px_36px_rgba(0,0,0,0.28)] flex flex-col gap-4 sm:gap-5 kinetic-card group backdrop-blur-sm transition-all">
 
-                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-surface-container dark:bg-stone-800 border border-outline-variant/40 dark:border-stone-700/60 flex items-center justify-center text-signal-orange shrink-0 shadow-sm">
-                        <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                      </div>
-                    </div>
-
-                    <p className="font-sans text-[14px] sm:text-[15px] text-on-surface-variant dark:text-stone-400 leading-relaxed font-[450]">
-                      {cat.description}
-                    </p>
-
-                    {/* Telemetry Metric Callout Box */}
-                    <div className="p-4 sm:p-4.5 rounded-2xl bg-canvas/80 dark:bg-[#121110] border border-outline-variant/60 dark:border-stone-800/80 flex items-center justify-between gap-3">
-                      <div>
-                        <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-widest text-on-surface-variant dark:text-stone-400 block mb-0.5">
-                          {cat.telemetry.label}
-                        </span>
-                        <span className="font-serif text-[20px] sm:text-[24px] font-bold text-signal-orange">
-                          {cat.telemetry.value}
-                        </span>
-                      </div>
-                      <span className="font-mono text-[10px] sm:text-[11px] text-on-surface-variant dark:text-stone-400 max-w-[170px] text-right">
-                        {cat.telemetry.sub}
+                  {/* Card Header */}
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="space-y-0.5 min-w-0">
+                      <span className="font-mono text-[9.5px] sm:text-[10px] text-signal-orange font-semibold tracking-widest uppercase block">
+                        {cat.eyebrow}
                       </span>
+                      <h2 className="font-serif text-[20px] xs:text-[22px] sm:text-[26px] text-primary dark:text-stone-100 font-semibold tracking-tight leading-snug">
+                        {cat.title}
+                      </h2>
                     </div>
-
-                    {/* Key Highlights Checklist */}
-                    <div className="space-y-2 pt-1">
-                      <span className="font-mono text-[10px] sm:text-[11px] text-on-surface-variant dark:text-stone-400 uppercase tracking-wider block font-medium">
-                        Key Methodologies &amp; Capabilities
-                      </span>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {cat.highlights.map((h) => (
-                          <div
-                            key={h}
-                            className="flex items-center gap-2 text-[12px] sm:text-[13px] text-primary dark:text-stone-300 font-sans"
-                          >
-                            <CheckCircle2 className="w-3.5 h-3.5 text-signal-orange shrink-0" />
-                            <span>{h}</span>
-                          </div>
-                        ))}
-                      </div>
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-surface-container dark:bg-stone-800 border border-outline-variant/40 dark:border-stone-700/60 flex items-center justify-center text-signal-orange shrink-0">
+                      <Icon className="w-5 h-5" />
                     </div>
                   </div>
 
-                  {/* Tool Pills with Badges */}
-                  <div className="pt-5 sm:pt-6 border-t border-outline-variant/40 dark:border-stone-800 mt-5 sm:mt-6 space-y-3">
-                    <span className="font-mono text-[10px] sm:text-[11px] text-on-surface-variant dark:text-stone-400 uppercase tracking-wider block font-medium">
-                      Technical Stack &amp; Libraries
+                  {/* Description */}
+                  <p className="font-sans text-[13px] sm:text-[14px] text-on-surface-variant dark:text-stone-400 leading-relaxed font-[450] -mt-1">
+                    {cat.description}
+                  </p>
+
+                  {/* Featured Projects */}
+                  <div className="space-y-2">
+                    <span className="font-mono text-[9.5px] sm:text-[10px] text-on-surface-variant dark:text-stone-500 uppercase tracking-wider font-medium block">
+                      Featured Projects
                     </span>
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                      {cat.tools.map((t) => (
-                        <div
-                          key={t.name}
-                          className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-surface-container dark:bg-stone-800/70 border border-outline-variant/40 dark:border-stone-700/50 text-primary dark:text-stone-200 font-mono text-[10px] sm:text-[11px]"
+                    <ul className="space-y-1.5">
+                      {cat.featuredProjects.map((project) => (
+                        <li
+                          key={project.name}
+                          className="flex items-start gap-2 text-[12px] sm:text-[13px] font-sans leading-snug"
                         >
-                          <span className="font-semibold">{t.name}</span>
-                          <span className="text-on-surface-variant/60 dark:text-stone-500">•</span>
-                          <span className="text-on-surface-variant dark:text-stone-400 text-[9px] sm:text-[10px]">
-                            {t.tag}
+                          <span className="mt-[5px] w-1 h-1 rounded-full bg-signal-orange shrink-0" />
+                          <span>
+                            <span className="font-semibold text-primary dark:text-stone-200">
+                              {project.name}:
+                            </span>{" "}
+                            <span className="text-on-surface-variant dark:text-stone-400 font-[440]">
+                              {project.detail}
+                            </span>
                           </span>
-                        </div>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
+
+                  {/* Domain Tag Chips */}
+                  <div className="pt-3 border-t border-outline-variant/30 dark:border-stone-800/70 flex flex-wrap gap-1.5">
+                    {cat.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-1 rounded-full bg-surface-container dark:bg-stone-800/70 border border-outline-variant/30 dark:border-stone-700/40 text-primary dark:text-stone-300 font-mono text-[10px] sm:text-[11px]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
                 </article>
               </ScrollReveal>
             );

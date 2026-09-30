@@ -1,6 +1,7 @@
 "use client";
 
 import { SkillFoundation } from "@/types";
+import { EngineeringGatewayCards } from "@/components/EngineeringGatewayCards";
 
 const skillsData: SkillFoundation[] = [
   {
@@ -89,34 +90,40 @@ export function SkillCarousel() {
   return (
     <section className="w-full relative overflow-hidden" id="toolkit-section">
       <div className="flex flex-col">
-        {/* Header with Navigation Controls */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6">
-          <div className="space-y-2.5 sm:space-y-3 max-w-xl">
-            <div className="inline-flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-signal-orange" />
-              <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-primary dark:text-stone-300 font-semibold">
-                • ENGINEERING DISCIPLINE // TOOLKIT
-              </span>
+
+        {/* ── MOBILE: compact gateway cards (< md) ── */}
+        <EngineeringGatewayCards />
+
+        {/* ── DESKTOP: full marquee (≥ md) ── */}
+        <div className="hidden md:flex flex-col">
+          {/* Header with Navigation Controls */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6">
+            <div className="space-y-2.5 sm:space-y-3 max-w-xl">
+              <div className="inline-flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-signal-orange" />
+                <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-primary dark:text-stone-300 font-semibold">
+                  • ENGINEERING DISCIPLINE // TOOLKIT
+                </span>
+              </div>
+              <h2 className="font-serif text-[28px] xs:text-[32px] sm:text-[38px] md:text-[46px] text-primary dark:text-stone-100 tracking-tight font-medium leading-tight">
+                Crafted Engineering Foundations
+              </h2>
+              <p className="font-sans text-[14px] sm:text-[16px] text-on-surface-variant dark:text-stone-400 font-[450] leading-relaxed">
+                Curated technical competencies across intelligent systems, robust server backends, and modern interfaces.
+              </p>
             </div>
-            <h2 className="font-serif text-[28px] xs:text-[32px] sm:text-[38px] md:text-[46px] text-primary dark:text-stone-100 tracking-tight font-medium leading-tight">
-              Crafted Engineering Foundations
-            </h2>
-            <p className="font-sans text-[14px] sm:text-[16px] text-on-surface-variant dark:text-stone-400 font-[450] leading-relaxed">
-              Curated technical competencies across intelligent systems, robust server backends, and modern interfaces.
-            </p>
+
+            <div className="flex items-center gap-3 shrink-0">
+              <div className="inline-flex items-center gap-2 font-mono text-[11px] sm:text-[12px] text-on-surface-variant dark:text-stone-400 bg-surface dark:bg-stone-900/80 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-outline-variant/60 dark:border-stone-800 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-signal-orange animate-ping" />
+                <span>Continuous Foundations Flow</span>
+              </div>
+            </div>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0">
-            <div className="inline-flex items-center gap-2 font-mono text-[11px] sm:text-[12px] text-on-surface-variant dark:text-stone-400 bg-surface dark:bg-stone-900/80 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-outline-variant/60 dark:border-stone-800 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-signal-orange animate-ping" />
-              <span>Continuous Foundations Flow</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Continuous Seamless Marquee Track */}
-        <div className="relative w-full overflow-hidden mt-8 sm:mt-12 md:mt-16 py-4 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
-          <div className="animate-marquee-fast flex gap-5 sm:gap-8 md:gap-10">
+          {/* Continuous Seamless Marquee Track */}
+          <div className="relative w-full overflow-hidden mt-8 sm:mt-12 md:mt-16 py-4 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+            <div className="animate-marquee-fast flex gap-5 sm:gap-8 md:gap-10">
             {marqueeSkills.map((skill, index) => (
               <article
                 key={`${skill.id}-${index}`}
@@ -243,8 +250,10 @@ export function SkillCarousel() {
                 </div>
               </article>
             ))}
+            </div>
           </div>
-        </div>
+        </div>{/* end desktop marquee wrapper */}
+
       </div>
     </section>
   );
