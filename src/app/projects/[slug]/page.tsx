@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { projects } from "@/content/content";
+import { ogImage } from "@/lib/site";
 import { ProjectDetailView } from "@/components/project/ProjectDetailView";
 
 type Props = { params: { slug: string } };
@@ -14,11 +15,16 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: Props): Metadata {
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) return {};
-  // The layout's title template appends ", Philip Tomasui".
+  const url = `/projects/${project.slug}`;
+  const fullTitle = `${project.title}, Philip Tomasui`;
+  // The layout's title template appends ", Philip Tomasui" to <title>.
+  // Open Graph and Twitter are set here too, otherwise they would keep the home page's title.
   return {
     title: project.title,
     description: project.line.en,
-    alternates: { canonical: `/projects/${project.slug}` },
+    alternates: { canonical: url },
+    openGraph: { type: "article", title: fullTitle, description: project.line.en, url, images: [ogImage] },
+    twitter: { card: "summary", title: fullTitle, description: project.line.en, images: [ogImage.url] },
   };
 }
 

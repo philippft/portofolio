@@ -103,7 +103,7 @@ export function Projects() {
       {featured.length > 0 && (
         <div className="mt-10 grid grid-cols-[repeat(auto-fill,minmax(min(320px,100%),1fr))] gap-5">
           {featured.map((p) => (
-            <article key={p.slug} className="flex flex-col overflow-hidden rounded-[10px] border border-card-line bg-white">
+            <article key={p.slug} className="relative flex flex-col overflow-hidden rounded-[10px] border border-card-line bg-white">
               <div className="relative flex aspect-[16/10] items-center justify-center bg-mist px-6 text-center">
                 {isPlaceholder(p.thumbnail) ? (
                   <span className="text-[14px] text-muted">{p.thumbnail}</span>
@@ -174,12 +174,12 @@ export function Projects() {
             aria-label={t(ui.moreProjects)}
             tabIndex={0}
             onScroll={updateEdges}
-            className="mt-5 flex snap-x snap-mandatory gap-3.5 overflow-x-auto pb-3.5"
+            className="relative mt-5 flex snap-x snap-mandatory gap-3.5 overflow-x-auto pb-3.5"
           >
             {more.map((p) => (
               <article
                 key={p.slug}
-                className="flex min-h-[210px] flex-[0_0_280px] snap-start flex-col rounded-[10px] border border-card-line bg-[#fafbfd] px-5 py-[18px]"
+                className="relative flex min-h-[210px] flex-[0_0_280px] snap-start flex-col rounded-[10px] border border-card-line bg-[#fafbfd] px-5 py-[18px]"
               >
                 <p className={`m-0 text-[14px] font-semibold ${trackColor[p.track]}`}>{trackLabel(p)}</p>
                 <h4 className="m-0 mt-2 text-[18px] font-bold leading-snug">{p.title}</h4>

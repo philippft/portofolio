@@ -392,6 +392,17 @@ export const ui = {
     timeZoneLabel: { en: 'WITA', id: 'WITA' },
     built: { en: 'Built with Next.js and Tailwind CSS. Updated November 2026.', id: 'Dibuat dengan Next.js dan Tailwind CSS. Diperbarui November 2026.' },
   },
+  notFound: {
+    title: { en: 'Page not found', id: 'Halaman tidak ditemukan' },
+    body: { en: 'This page does not exist, or it has moved.', id: 'Halaman ini tidak ada, atau sudah dipindahkan.' },
+    home: { en: 'Back to home', id: 'Kembali ke beranda' },
+  },
+  error: {
+    title: { en: 'Something went wrong', id: 'Terjadi kesalahan' },
+    body: { en: 'The page could not be shown.', id: 'Halaman tidak bisa ditampilkan.' },
+    retry: { en: 'Try again', id: 'Coba lagi' },
+    home: { en: 'Back to home', id: 'Kembali ke beranda' },
+  },
   detail: {
     back: { en: 'All projects', id: 'Semua proyek' },
     problem: { en: 'Problem', id: 'Masalah' },

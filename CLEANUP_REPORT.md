@@ -88,7 +88,7 @@ git rm public/profile.jpg public/philip-profile.png public/CV_Philip_Tomasui.pdf
 npm uninstall framer-motion lucide-react next-themes clsx tailwind-merge
 ```
 
-## Open questions
+## Open questions (resolved)
 
-1. Delete the three cover images in `public/images/`?
-2. `philip.jpg` and `philip-cutout.png` are not in `public/images/`. Once they are, switch `profile.photo` back to `/images/philip.jpg` and delete `philip.png`.
+1. Cover images: deleted (commit "chore: link GitHub, hapus sampul lama").
+2. Photo: `public/images/philip.jpg` (800×800) added, `philip.png` deleted; ID card uses the crop `philip-card.jpg`.

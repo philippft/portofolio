@@ -23,7 +23,7 @@ export function Hero() {
           aria-label={t(ui.navLabel)}
           className="flex flex-wrap items-center justify-between gap-x-8 gap-y-1 py-4"
         >
-          <a href="#top" className="text-[20px] font-bold [font-stretch:75%]">
+          <a href="#top" className="inline-flex min-h-11 items-center text-[20px] font-bold [font-stretch:75%]">
             {profile.brandName}
           </a>
 
