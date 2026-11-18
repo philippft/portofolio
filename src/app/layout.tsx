@@ -13,7 +13,7 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "Philip Tomasui, back-end and ML",
+  title: { default: "Philip Tomasui, back-end and ML", template: "%s, Philip Tomasui" },
   description: profile.intro.en,
 };
 

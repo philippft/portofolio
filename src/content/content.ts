@@ -401,5 +401,9 @@ export const ui = {
     compare: { en: 'Model comparison', id: 'Perbandingan model' },
     model: { en: 'Model', id: 'Model' },
     stack: { en: 'Stack', id: 'Teknologi' },
+    prevProject: { en: 'Previous project', id: 'Proyek sebelumnya' },
+    nextProject: { en: 'Next project', id: 'Proyek berikutnya' },
+    pagerLabel: { en: 'Other projects', id: 'Proyek lain' },
+    noStory: { en: '[ISI: ceritakan proyek ini]', id: '[ISI: ceritakan proyek ini]' },
   },
 } satisfies Record<string, unknown>;
