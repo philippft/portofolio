@@ -18,6 +18,8 @@ export const profile = {
   shortName: 'Philip F. Tomasui',
   brandName: 'Philip Tomasui',
   email: 'dzosfphilip@gmail.com',
+  wordmark: 'Tomasui',
+  copyrightYear: '2026',
   campus: 'Universitas Udayana',
   entryYear: '2024',
   gpa: '3.97',
@@ -346,6 +348,7 @@ export const ui = {
   emailMe: { en: 'Email me', id: 'Kirim email' },
   downloadCv: { en: 'Download CV', id: 'Unduh CV' },
   whatsappCta: { en: 'Chat on WhatsApp', id: 'Chat lewat WhatsApp' },
+  cvFormat: { en: 'PDF', id: 'PDF' },
   card: {
     label: { en: 'Student card for Philip Tomasui', id: 'Kartu mahasiswa Philip Tomasui' },
     focus: { en: 'Focus', id: 'Fokus' },
@@ -386,6 +389,7 @@ export const ui = {
     reachMe: { en: 'Reach me', id: 'Hubungi saya' },
     language: { en: 'Language', id: 'Bahasa' },
     backToTop: { en: 'Back to top', id: 'Kembali ke atas' },
+    timeZoneLabel: { en: 'WITA', id: 'WITA' },
     built: { en: 'Built with Next.js and Tailwind CSS. Updated November 2026.', id: 'Dibuat dengan Next.js dan Tailwind CSS. Diperbarui November 2026.' },
   },
   detail: {

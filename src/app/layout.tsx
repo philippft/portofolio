@@ -3,6 +3,7 @@ import { Archivo } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/content/content";
 import { LanguageProvider } from "@/lib/i18n";
+import { Footer } from "@/components/Footer";
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -23,8 +24,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={archivo.variable}>
-      <body className="min-h-screen bg-white font-sans text-ink antialiased">
-        <LanguageProvider>{children}</LanguageProvider>
+      <body id="top" className="min-h-screen bg-white font-sans text-ink antialiased">
+        <LanguageProvider>
+          {children}
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );
