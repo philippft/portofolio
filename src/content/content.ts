@@ -330,6 +330,11 @@ export const skillGroups: { name: L; accent: 'navy' | 'gold' | 'muted'; items: {
 /* ------------------------------------------------------------------ */
 
 export const ui = {
+  langToggle: {
+    label: { en: 'Language', id: 'Bahasa' },
+    en: { short: 'EN', name: 'English' },
+    id: { short: 'ID', name: 'Bahasa Indonesia' },
+  },
   nav: {
     experience: { en: 'Experience', id: 'Pengalaman' },
     projects: { en: 'Projects', id: 'Proyek' },
