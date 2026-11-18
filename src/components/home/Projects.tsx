@@ -150,18 +150,18 @@ export function Projects() {
               <button
                 type="button"
                 aria-label={t(ui.prev)}
-                disabled={atStart}
-                onClick={() => scrollByStep(-1)}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border-[1.5px] border-navy bg-white text-navy transition-opacity disabled:cursor-default disabled:opacity-35"
+                aria-disabled={atStart}
+                onClick={() => !atStart && scrollByStep(-1)}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border-[1.5px] border-navy bg-white text-navy transition-opacity aria-disabled:cursor-default aria-disabled:opacity-35"
               >
                 <Chevron dir="left" />
               </button>
               <button
                 type="button"
                 aria-label={t(ui.next)}
-                disabled={atEnd}
-                onClick={() => scrollByStep(1)}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border-[1.5px] border-navy bg-navy text-white transition-opacity disabled:cursor-default disabled:opacity-35"
+                aria-disabled={atEnd}
+                onClick={() => !atEnd && scrollByStep(1)}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border-[1.5px] border-navy bg-navy text-white transition-opacity aria-disabled:cursor-default aria-disabled:opacity-35"
               >
                 <Chevron dir="right" />
               </button>
