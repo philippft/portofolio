@@ -371,7 +371,15 @@ export const ui = {
     be: { en: 'Back-end', id: 'Back-end' },
     ml: { en: 'Machine learning', id: 'Machine learning' },
   },
-  moreProjects: { en: 'More projects', id: 'Proyek lainnya' },
+  carousel: { en: 'carousel', id: 'korsel' },
+  autoplay: {
+    pause: { en: 'Pause auto-scroll', id: 'Jeda gulir otomatis' },
+    play: { en: 'Play auto-scroll', id: 'Putar gulir otomatis' },
+  },
+  dots: {
+    label: { en: 'Choose a project', id: 'Pilih proyek' },
+    goTo: { en: 'Go to', id: 'Tampilkan' },
+  },
   prev: { en: 'Previous projects', id: 'Proyek sebelumnya' },
   next: { en: 'Next projects', id: 'Proyek berikutnya' },
   seeDetails: { en: 'See details', id: 'Lihat detail' },
