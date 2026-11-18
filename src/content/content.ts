@@ -44,7 +44,7 @@ export const contacts = [
   { key: 'email', label: 'Email', handle: 'dzosfphilip@gmail.com', href: 'mailto:dzosfphilip@gmail.com', external: false },
   { key: 'linkedin', label: 'LinkedIn', handle: '[ISI: linkedin.com/in/…]', href: '#', external: true },
   { key: 'instagram', label: 'Instagram', handle: '[ISI: @username]', href: '#', external: true },
-  { key: 'github', label: 'GitHub', handle: '[ISI: github.com/…]', href: '#', external: true },
+  { key: 'github', label: 'GitHub', handle: 'github.com/philippft', href: 'https://github.com/philippft', external: true },
 ] as const;
 
 /* ------------------------------------------------------------------ */
