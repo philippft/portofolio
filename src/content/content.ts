@@ -23,7 +23,8 @@ export const profile = {
   gpa: '3.97',
   base: 'Jimbaran, Bali',
   timeZone: 'Asia/Makassar', // WITA, UTC+8
-  photo: '/images/philip.jpg',
+  photo: '/images/philip.jpg', // full photo, used for Open Graph
+  photoCard: '/images/philip-card.jpg', // head-and-shoulders crop for the ID card
   cvUrl: '/cv/CV_Philip_Tomasui.pdf',
   program: { en: 'Informatics, Faculty of Mathematics and Natural Sciences', id: 'Informatika, Fakultas MIPA' } as L,
   role: { en: 'Back-end and machine learning, Universitas Udayana.', id: 'Back-end dan machine learning, Universitas Udayana.' } as L,

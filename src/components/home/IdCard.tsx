@@ -46,12 +46,12 @@ export function IdCard() {
 
             <div className="relative mt-3 h-[230px] overflow-hidden rounded-lg bg-mist">
               <Image
-                src={profile.photo}
+                src={profile.photoCard}
                 alt={t(ui.card.photoAlt)}
                 fill
                 priority
                 sizes="(max-width: 400px) calc(100vw - 120px), 280px"
-                className="object-cover [object-position:50%_22%]"
+                className="object-cover [object-position:50%_30%]"
               />
             </div>
 
