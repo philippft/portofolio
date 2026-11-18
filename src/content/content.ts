@@ -16,6 +16,8 @@ export const isPlaceholder = (s: string) => s.startsWith('[ISI');
 export const profile = {
   name: 'Philip Filadelphia Tomasui',
   shortName: 'Philip F. Tomasui',
+  brandName: 'Philip Tomasui',
+  email: 'dzosfphilip@gmail.com',
   campus: 'Universitas Udayana',
   entryYear: '2024',
   gpa: '3.97',
@@ -333,6 +335,7 @@ export const ui = {
     en: { short: 'EN', name: 'English' },
     id: { short: 'ID', name: 'Bahasa Indonesia' },
   },
+  navLabel: { en: 'Main', id: 'Utama' },
   nav: {
     experience: { en: 'Experience', id: 'Pengalaman' },
     projects: { en: 'Projects', id: 'Proyek' },
@@ -349,6 +352,11 @@ export const ui = {
     base: { en: 'Based in', id: 'Domisili' },
     status: { en: 'Status', id: 'Status' },
     statusValue: { en: 'Open to internship', id: 'Terbuka untuk magang' },
+    gpa: { en: 'GPA', id: 'IPK' },
+    photoAlt: {
+      en: 'Philip Tomasui in a navy Universitas Udayana blazer',
+      id: 'Philip Tomasui memakai jas almamater Universitas Udayana berwarna navy',
+    },
     footer: { en: 'Student', id: 'Mahasiswa' },
   },
   experienceTitle: { en: 'Experience', id: 'Pengalaman' },
