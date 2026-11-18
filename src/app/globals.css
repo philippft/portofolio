@@ -24,6 +24,17 @@
   }
 }
 
+@layer utilities {
+  /* Hide the scrollbar but keep the element scrollable (touch, trackpad, keyboard). */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

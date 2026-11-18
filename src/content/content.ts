@@ -125,7 +125,7 @@ export type Project = {
   line: L; // one sentence for cards
   result?: L; // short result for featured cards
   stack: string[];
-  thumbnail: string; // image path, or an [ISI] placeholder
+  thumbnail: string; // image path, or '' for the navy title cover
   detail?: ProjectDetail; // featured projects have a full case study
 };
 
@@ -142,7 +142,7 @@ export const projects: Project[] = [
     },
     result: { en: '0.972 macro-F1, SATRIA DATA', id: 'Macro-F1 0.972, SATRIA DATA' },
     stack: ['Python', 'EfficientNetB3', 'MobileNet', 'MD5', 'pHash'],
-    thumbnail: '[ISI: gambar sampah sebelum/sesudah dibersihkan]',
+    thumbnail: '',
     detail: {
       context: { en: 'SATRIA DATA national competition. Team lead and data scientist.', id: 'Lomba nasional SATRIA DATA. Ketua tim dan data scientist.' },
       headline: { en: 'Cleaning the data mattered as much as picking the model.', id: 'Membersihkan data sama pentingnya dengan memilih model.' },
@@ -176,7 +176,7 @@ export const projects: Project[] = [
     },
     result: { en: 'SRS, DFD and ERD before code', id: 'SRS, DFD, dan ERD sebelum kode' },
     stack: ['Laravel', 'MySQL', 'Mailtrap', 'Dompdf'],
-    thumbnail: '[ISI: screenshot halaman peminjaman]',
+    thumbnail: '',
     detail: {
       context: { en: 'Inventory loan system for FMIPA Udayana. Back-end developer.', id: 'Sistem peminjaman inventaris FMIPA Udayana. Back-end developer.' },
       headline: { en: 'Wrote the SRS, DFD and ERD before the first line of code.', id: 'Menulis SRS, DFD, dan ERD sebelum baris kode pertama.' },
@@ -202,7 +202,7 @@ export const projects: Project[] = [
     line: { en: 'Recognizes six Balinese gamelan instruments from audio.', id: 'Mengenali enam instrumen gamelan Bali dari audio.' },
     result: { en: '96% accuracy', id: 'Akurasi 96%' },
     stack: ['Python', 'KNN', 'SVM', 'LSTM'],
-    thumbnail: '[ISI: spektrogram atau confusion matrix]',
+    thumbnail: '',
     detail: {
       context: { en: 'Audio classification. ML engineer and data scientist.', id: 'Klasifikasi audio. ML engineer dan data scientist.' },
       headline: {
@@ -372,16 +372,8 @@ export const ui = {
     ml: { en: 'Machine learning', id: 'Machine learning' },
   },
   carousel: { en: 'carousel', id: 'korsel' },
-  autoplay: {
-    pause: { en: 'Pause auto-scroll', id: 'Jeda gulir otomatis' },
-    play: { en: 'Play auto-scroll', id: 'Putar gulir otomatis' },
-  },
-  dots: {
-    label: { en: 'Choose a project', id: 'Pilih proyek' },
-    goTo: { en: 'Go to', id: 'Tampilkan' },
-  },
-  prev: { en: 'Previous projects', id: 'Proyek sebelumnya' },
-  next: { en: 'Next projects', id: 'Proyek berikutnya' },
+  pauseAuto: { en: 'Pause auto-scroll', id: 'Jeda gulir otomatis' },
+  playAuto: { en: 'Play auto-scroll', id: 'Putar gulir otomatis' },
   seeDetails: { en: 'See details', id: 'Lihat detail' },
   skillsTitle: { en: 'Skills', id: 'Skill' },
   skillsSub: { en: 'Each skill is listed with the projects where I actually used it.', id: 'Setiap skill ditulis bersama proyek tempat saya benar-benar memakainya.' },

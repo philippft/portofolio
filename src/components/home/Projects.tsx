@@ -1,38 +1,25 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { isPlaceholder, projects, ui, type Project, type Track } from "@/content/content";
+import { projects, ui, type Project, type Track } from "@/content/content";
 import { useLang } from "@/lib/i18n";
 
 type Filter = "all" | Track;
 
 const FILTERS: Filter[] = ["all", "be", "ml"];
-const AUTOPLAY_MS = 5000; // time between automatic steps
-const RESUME_MS = 8000; // quiet time after the visitor touches, scrolls or uses the controls
+const SPEED = 40; // px per second
+const RESUME_MS = 3000; // quiet time after the visitor scrolls or lets go
 
 const trackColor: Record<Track, string> = { be: "text-navy", ml: "text-gold-ink" };
+const coverLine: Record<Track, string> = { be: "bg-[#9aa6c7]", ml: "bg-gold" };
 
 // Featured projects first, then the rest, each in content.ts order.
 const ORDERED = [...projects.filter((p) => p.featured), ...projects.filter((p) => !p.featured)];
 
 function count(filter: Filter) {
   return filter === "all" ? projects.length : projects.filter((p) => p.track === filter).length;
-}
-
-function prefersReducedMotion() {
-  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-
-const scrollBehavior = (): ScrollBehavior => (prefersReducedMotion() ? "auto" : "smooth");
-
-function Chevron({ dir }: { dir: "left" | "right" }) {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d={dir === "left" ? "M15 18l-6-6 6-6" : "M9 18l6-6-6-6"} />
-    </svg>
-  );
 }
 
 function PlayPauseIcon({ playing }: { playing: boolean }) {
@@ -50,33 +37,46 @@ function PlayPauseIcon({ playing }: { playing: boolean }) {
   );
 }
 
-function ProjectCard({ p }: { p: Project }) {
+function ProjectCard({ p, copy }: { p: Project; copy: boolean }) {
   const { t } = useLang();
+  const stack = p.stack.join(", ");
   return (
-    <article className="relative flex w-[min(85vw,340px)] flex-none snap-start flex-col overflow-hidden rounded-[10px] border border-card-line bg-white md:w-[340px]">
-      {p.featured && (
-        <div className="relative flex aspect-[16/10] items-center justify-center bg-mist px-6 text-center">
-          {isPlaceholder(p.thumbnail) ? (
-            <span className="text-[14px] text-muted">{p.thumbnail}</span>
-          ) : (
-            <Image src={p.thumbnail} alt="" fill sizes="340px" className="object-cover" />
-          )}
-        </div>
-      )}
+    <article
+      data-copy={copy ? "1" : undefined}
+      aria-hidden={copy ? "true" : undefined}
+      className="relative flex w-[min(85vw,340px)] flex-none snap-start flex-col overflow-hidden rounded-[10px] border border-card-line bg-white md:w-[340px]"
+    >
+      {/* Cover: decorative, the title is repeated in the h3 below. */}
+      <div aria-hidden="true" className="relative aspect-[16/10] overflow-hidden bg-navy">
+        {p.thumbnail ? (
+          <Image src={p.thumbnail} alt="" fill sizes="340px" className="object-cover" />
+        ) : (
+          <div className="absolute inset-0 flex items-end p-5">
+            <span className="line-clamp-3 text-[34px] font-extrabold leading-[0.95] text-white [font-stretch:68%]">
+              {p.title}
+            </span>
+          </div>
+        )}
+        <span className={`absolute inset-x-0 bottom-0 h-1 ${coverLine[p.track]}`} />
+      </div>
 
-      <div className="flex flex-1 flex-col px-6 pb-5 pt-5">
-        <p className={`m-0 text-[14px] font-semibold ${trackColor[p.track]}`}>
-          {t(ui.filter[p.track])}, {p.when}
+      <div className="flex flex-1 flex-col px-5 pb-2 pt-5">
+        <p className="m-0 text-[14px] font-semibold">
+          <span className={trackColor[p.track]}>{t(ui.filter[p.track])}</span>
+          <span className="text-muted">, {p.when}</span>
         </p>
-        <h3 className="m-0 mt-2 text-[26px] font-extrabold leading-[1.05] [font-stretch:78%]">{p.title}</h3>
-        <p className="m-0 mt-3 text-body">{t(p.line)}</p>
+        <h3 className="m-0 mt-2 text-[24px] font-extrabold leading-[1.05] [font-stretch:78%]">{p.title}</h3>
+        <p className="m-0 mt-2 line-clamp-3 text-body">{t(p.line)}</p>
         {p.result && <p className="m-0 mt-3 font-bold text-navy">{t(p.result)}</p>}
 
-        <div className="mt-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-1 pt-5">
-          <p className="m-0 text-[14px] text-muted">{p.stack.slice(0, 3).join(", ")}</p>
+        <div className="mt-auto flex items-center justify-between gap-3 border-t border-line pt-3">
+          <p title={stack} className="m-0 min-w-0 truncate text-[14px] text-muted">
+            {stack}
+          </p>
           <Link
             href={`/projects/${p.slug}`}
-            className="inline-flex min-h-11 items-center font-semibold text-navy underline underline-offset-4 hover:no-underline"
+            tabIndex={copy ? -1 : undefined}
+            className="inline-flex min-h-11 shrink-0 items-center font-semibold text-navy underline underline-offset-4 hover:no-underline"
           >
             {t(ui.seeDetails)}
             <span className="sr-only">: {p.title}</span>
@@ -92,159 +92,154 @@ export function Projects() {
   const [filter, setFilter] = useState<Filter>("all");
   const visible = ORDERED.filter((p) => filter === "all" || p.track === filter);
 
+  const [reduced, setReduced] = useState(false);
+  const [manualPaused, setManualPaused] = useState(false);
+  // How many hidden copies follow the real list. One copy is enough with many cards;
+  // a short list (three back-end cards on a wide screen) needs more to fill the loop.
+  const [copies, setCopies] = useState(1);
+
   const trackRef = useRef<HTMLDivElement>(null);
-  const sliderRef = useRef<HTMLDivElement>(null); // track + dots: the area that pauses on hover/focus/touch
-
-  const [atStart, setAtStart] = useState(true);
-  const [atEnd, setAtEnd] = useState(true);
-  const [active, setActive] = useState(0);
-  const [manualPaused, setManualPaused] = useState(false); // the Pause button, or reduced motion
-  const [running, setRunning] = useState(false); // is an automatic step currently scheduled
-
-  // Autoplay conditions live in refs so event handlers can update them without re-rendering.
   const manualPausedRef = useRef(false);
-  const hovered = useRef(false);
-  const focused = useRef(false);
-  const tabVisible = useRef(true);
-  const inView = useRef(false);
-  const timer = useRef<ReturnType<typeof setTimeout>>();
 
-  const step = useCallback(() => {
-    const track = trackRef.current;
-    const card = track?.querySelector("article");
-    if (!track || !card) return 0;
-    return card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || "0");
+  // Reduced motion: no marquee, no copies, an ordinary swipeable row.
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => setReduced(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
   }, []);
 
-  const updatePosition = useCallback(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    setAtStart(track.scrollLeft <= 1);
-    setAtEnd(track.scrollLeft + track.clientWidth >= track.scrollWidth - 1);
-    // Active dot = the left-most card that is (mostly) in view.
-    const cards = Array.from(track.querySelectorAll("article"));
-    const i = cards.findIndex((c) => c.offsetLeft + c.offsetWidth / 2 > track.scrollLeft);
-    setActive(i === -1 ? cards.length - 1 : i);
-  }, []);
-
-  const advance = useCallback(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 1) {
-      track.scrollTo({ left: 0 });
-    } else {
-      track.scrollBy({ left: step(), behavior: scrollBehavior() });
-    }
-  }, [step]);
-
-  // (Re)start the countdown to the next automatic step, or stop it if anything says "pause".
-  const schedule = useCallback(
-    (delay: number) => {
-      clearTimeout(timer.current);
-      timer.current = undefined;
-      const canRun =
-        !manualPausedRef.current && !hovered.current && !focused.current && tabVisible.current && inView.current;
-      setRunning(canRun);
-      if (!canRun) return;
-      const tick = () => {
-        advance();
-        timer.current = setTimeout(tick, AUTOPLAY_MS);
-      };
-      timer.current = setTimeout(tick, delay);
-    },
-    [advance],
-  );
-
-  // The visitor did something: give them RESUME_MS of quiet before autoplay continues.
-  const interacted = useCallback(() => schedule(RESUME_MS), [schedule]);
-
-  // Reduced motion: start paused. The Play button still works.
-  useEffect(() => {
-    if (prefersReducedMotion()) {
-      manualPausedRef.current = true;
-      setManualPaused(true);
-      schedule(AUTOPLAY_MS);
-    }
-  }, [schedule]);
-
-  // Hover, focus, touch, wheel, tab visibility and on-screen visibility.
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider) return;
-
-    const onEnter = () => { hovered.current = true; schedule(AUTOPLAY_MS); };
-    const onLeave = () => { hovered.current = false; interacted(); };
-    const onFocusIn = () => { focused.current = true; schedule(AUTOPLAY_MS); };
-    const onFocusOut = (e: FocusEvent) => {
-      if (slider.contains(e.relatedTarget as Node | null)) return;
-      focused.current = false;
-      interacted();
-    };
-    const onVisibility = () => {
-      tabVisible.current = document.visibilityState === "visible";
-      schedule(AUTOPLAY_MS);
-    };
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        inView.current = entry.isIntersecting;
-        schedule(AUTOPLAY_MS);
-      },
-      { threshold: 0.3 },
-    );
-
-    slider.addEventListener("mouseenter", onEnter);
-    slider.addEventListener("mouseleave", onLeave);
-    slider.addEventListener("focusin", onFocusIn);
-    slider.addEventListener("focusout", onFocusOut);
-    slider.addEventListener("pointerdown", interacted);
-    slider.addEventListener("wheel", interacted, { passive: true });
-    document.addEventListener("visibilitychange", onVisibility);
-    window.addEventListener("resize", updatePosition);
-    observer.observe(slider);
-
-    return () => {
-      slider.removeEventListener("mouseenter", onEnter);
-      slider.removeEventListener("mouseleave", onLeave);
-      slider.removeEventListener("focusin", onFocusIn);
-      slider.removeEventListener("focusout", onFocusOut);
-      slider.removeEventListener("pointerdown", interacted);
-      slider.removeEventListener("wheel", interacted);
-      document.removeEventListener("visibilitychange", onVisibility);
-      window.removeEventListener("resize", updatePosition);
-      observer.disconnect();
-      clearTimeout(timer.current);
-    };
-  }, [schedule, interacted, updatePosition]);
-
-  // New filter: back to the first card, reset the dots, restart autoplay (unless paused by hand).
+  // New filter: start from the beginning. The marquee keeps running unless paused by hand.
   useEffect(() => {
     trackRef.current?.scrollTo({ left: 0, behavior: "auto" });
-    updatePosition();
-    schedule(AUTOPLAY_MS);
-  }, [filter, updatePosition, schedule]);
+  }, [filter]);
+
+  // Make sure the copies are wide enough to loop without running out of track.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track || reduced) return;
+    const measure = () => {
+      const cards = track.querySelectorAll<HTMLElement>("article:not([data-copy])");
+      if (!cards.length) return;
+      const gap = parseFloat(getComputedStyle(track).columnGap || "0");
+      const last = cards[cards.length - 1];
+      const listWidth = last.offsetLeft + last.offsetWidth - cards[0].offsetLeft + gap;
+      setCopies(Math.max(1, Math.ceil((track.clientWidth + gap + 50) / listWidth)));
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [filter, reduced]);
+
+  // The marquee itself.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track || reduced) return;
+
+    let pos = track.scrollLeft; // our own float position; scrollLeft may round
+    let expected = track.scrollLeft; // what we last wrote, to tell our scrolls from the visitor's
+    let last = 0;
+    let frame = 0;
+    let hovered = false;
+    let focused = false;
+    let touching = false;
+    let hidden = document.visibilityState === "hidden";
+    let inView = false;
+    let quietUntil = 0;
+
+    // Distance between a real card and its first copy = one full loop.
+    const loopWidth = () => {
+      const first = track.querySelector<HTMLElement>("article:not([data-copy])");
+      const copy = track.querySelector<HTMLElement>("article[data-copy]");
+      return first && copy ? copy.offsetLeft - first.offsetLeft : 0;
+    };
+
+    const write = (left: number) => {
+      track.scrollLeft = left;
+      expected = track.scrollLeft;
+    };
+
+    const tick = (now: number) => {
+      const dt = last ? Math.min(now - last, 100) : 0; // cap so a long pause never causes a jump
+      last = now;
+      const running =
+        !manualPausedRef.current && !hovered && !focused && !touching && !hidden && inView && now >= quietUntil;
+      const loop = loopWidth();
+      if (running && loop > 0) {
+        pos += (SPEED * dt) / 1000;
+        if (pos >= loop) pos -= loop;
+        write(pos);
+      }
+      frame = requestAnimationFrame(tick);
+    };
+
+    // A scroll we did not cause came from the visitor: follow it, wrap it, wait a moment.
+    const onScroll = () => {
+      if (Math.abs(track.scrollLeft - expected) <= 1.5) return;
+      const loop = loopWidth();
+      pos = track.scrollLeft;
+      if (loop > 0 && pos >= loop) {
+        pos -= loop;
+        write(pos);
+      } else if (loop > 0 && pos <= 0 && expected > 0) {
+        pos += loop;
+        write(pos);
+      } else {
+        expected = pos;
+      }
+      quietUntil = performance.now() + RESUME_MS;
+    };
+
+    const onEnter = () => { hovered = true; };
+    const onLeave = () => { hovered = false; };
+    const onFocusIn = () => { focused = true; };
+    const onFocusOut = (e: FocusEvent) => {
+      if (!track.contains(e.relatedTarget as Node | null)) focused = false;
+    };
+    const onPointerDown = () => { touching = true; };
+    const onPointerUp = () => {
+      if (!touching) return;
+      touching = false;
+      quietUntil = performance.now() + RESUME_MS;
+    };
+    const onVisibility = () => { hidden = document.visibilityState === "hidden"; };
+    const observer = new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; }, { threshold: 0.2 });
+
+    track.addEventListener("scroll", onScroll, { passive: true });
+    track.addEventListener("mouseenter", onEnter);
+    track.addEventListener("mouseleave", onLeave);
+    track.addEventListener("focusin", onFocusIn);
+    track.addEventListener("focusout", onFocusOut);
+    track.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("pointerup", onPointerUp);
+    window.addEventListener("pointercancel", onPointerUp);
+    document.addEventListener("visibilitychange", onVisibility);
+    observer.observe(track);
+    frame = requestAnimationFrame(tick);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      track.removeEventListener("scroll", onScroll);
+      track.removeEventListener("mouseenter", onEnter);
+      track.removeEventListener("mouseleave", onLeave);
+      track.removeEventListener("focusin", onFocusIn);
+      track.removeEventListener("focusout", onFocusOut);
+      track.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("pointerup", onPointerUp);
+      window.removeEventListener("pointercancel", onPointerUp);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, [filter, reduced]);
 
   const togglePause = () => {
-    const next = !manualPausedRef.current;
-    manualPausedRef.current = next;
-    setManualPaused(next);
-    schedule(AUTOPLAY_MS);
+    manualPausedRef.current = !manualPausedRef.current;
+    setManualPaused(manualPausedRef.current);
   };
 
-  const scrollByCards = (direction: 1 | -1) => {
-    trackRef.current?.scrollBy({ left: direction * step(), behavior: scrollBehavior() });
-    interacted();
-  };
-
-  const goTo = (index: number) => {
-    const track = trackRef.current;
-    const card = track?.querySelectorAll("article")[index];
-    if (!track || !card) return;
-    track.scrollTo({ left: card.offsetLeft, behavior: scrollBehavior() });
-    interacted();
-  };
-
-  const roundButton =
-    "inline-flex h-11 w-11 items-center justify-center rounded-full border-[1.5px] border-navy transition-opacity aria-disabled:cursor-default aria-disabled:opacity-35";
+  const marquee = !reduced;
+  const fade = "linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent)";
 
   return (
     <section id="projects" aria-labelledby="projects-title" className="container pt-28">
@@ -256,7 +251,7 @@ export function Projects() {
           {t(ui.projectsTitle)}
         </h2>
 
-        {/* Below md the filters drop to their own row; the slider buttons stay next to the title. */}
+        {/* Below md the filters drop to their own row; the pause button stays next to the title. */}
         <div
           role="group"
           aria-label={t(ui.filter.label)}
@@ -281,72 +276,41 @@ export function Projects() {
           })}
         </div>
 
-        <div className="flex gap-2">
+        {marquee && (
           <button
             type="button"
-            aria-label={t(ui.prev)}
-            aria-disabled={atStart}
-            onClick={() => !atStart && scrollByCards(-1)}
-            className={`${roundButton} bg-white text-navy`}
-          >
-            <Chevron dir="left" />
-          </button>
-          <button
-            type="button"
-            aria-label={t(manualPaused ? ui.autoplay.play : ui.autoplay.pause)}
+            aria-label={t(manualPaused ? ui.playAuto : ui.pauseAuto)}
             aria-pressed={manualPaused}
             onClick={togglePause}
-            className={`${roundButton} bg-white text-navy`}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border-[1.5px] border-navy bg-white text-navy"
           >
             <PlayPauseIcon playing={!manualPaused} />
           </button>
-          <button
-            type="button"
-            aria-label={t(ui.next)}
-            aria-disabled={atEnd}
-            onClick={() => !atEnd && scrollByCards(1)}
-            className={`${roundButton} bg-navy text-white`}
-          >
-            <Chevron dir="right" />
-          </button>
-        </div>
+        )}
       </div>
 
-      <div ref={sliderRef} className="mt-10">
-        <div
-          ref={trackRef}
-          role="region"
-          aria-roledescription={t(ui.carousel)}
-          aria-label={t(ui.projectsTitle)}
-          aria-live={running ? "off" : "polite"}
-          tabIndex={0}
-          onScroll={updatePosition}
-          className="relative flex snap-x snap-mandatory items-stretch gap-5 overflow-x-auto pb-3.5"
-        >
-          {visible.map((p) => (
-            <ProjectCard key={p.slug} p={p} />
+      <div
+        ref={trackRef}
+        role="region"
+        aria-roledescription={t(ui.carousel)}
+        aria-label={t(ui.projectsTitle)}
+        tabIndex={0}
+        style={marquee ? { maskImage: fade, WebkitMaskImage: fade } : undefined}
+        className={`no-scrollbar relative mt-10 flex items-stretch gap-5 overflow-x-auto ${
+          marquee ? "" : "snap-x snap-mandatory"
+        }`}
+      >
+        {visible.map((p) => (
+          <ProjectCard key={p.slug} p={p} copy={false} />
+        ))}
+        {marquee &&
+          Array.from({ length: copies }, (_, c) => (
+            <Fragment key={c}>
+              {visible.map((p) => (
+                <ProjectCard key={`${p.slug}-${c}`} p={p} copy />
+              ))}
+            </Fragment>
           ))}
-        </div>
-
-        <div role="group" aria-label={t(ui.dots.label)} className="mt-3 flex flex-wrap justify-center">
-          {visible.map((p, i) => (
-            <button
-              key={p.slug}
-              type="button"
-              aria-label={`${t(ui.dots.goTo)} ${p.title}`}
-              aria-current={i === active ? "true" : undefined}
-              onClick={() => goTo(i)}
-              className="group inline-flex h-6 min-w-6 items-center justify-center px-1"
-            >
-              <span
-                aria-hidden="true"
-                className={`block h-2 rounded-full transition-all ${
-                  i === active ? "w-6 bg-navy" : "w-2 bg-[#c9d0e2] group-hover:bg-muted"
-                }`}
-              />
-            </button>
-          ))}
-        </div>
       </div>
     </section>
   );
