@@ -21,9 +21,7 @@ export const profile = {
   gpa: '3.97',
   base: 'Jimbaran, Bali',
   timeZone: 'Asia/Makassar', // WITA, UTC+8
-  // Temporary: the only photo in the repo (187x263 PNG). Replace with a larger photo.
-  photo: '/images/philip.png',
-  photoCutout: '/images/philip-cutout.png',
+  photo: '/images/philip.jpg',
   cvUrl: '/cv/CV_Philip_Tomasui.pdf',
   program: { en: 'Informatics, Faculty of Mathematics and Natural Sciences', id: 'Informatika, Fakultas MIPA' } as L,
   role: { en: 'Back-end and machine learning, Universitas Udayana.', id: 'Back-end dan machine learning, Universitas Udayana.' } as L,
